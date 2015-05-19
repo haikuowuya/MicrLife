@@ -1,0 +1,39 @@
+<merge
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="horizontal"
+    android:weightSum="5"
+    android:layout_height="64dp">
+
+    <include layout="@layout/layout_home_tab"
+         android:layout_weight="1"
+             android:layout_height="match_parent"
+             android:layout_width="match_parent"
+        />
+    <include layout="@layout/layout_home_tab"
+             android:layout_weight="1"
+             android:layout_height="match_parent"
+             android:layout_width="match_parent"
+        />
+    <include layout="@layout/layout_home_tab"
+             android:layout_weight="1"
+             android:layout_height="match_parent"
+             android:layout_width="match_parent"
+        />
+    <include layout="@layout/layout_home_tab"
+             android:layout_weight="1"
+             android:layout_height="match_parent"
+             android:layout_width="match_parent"
+        />
+    <include layout="@layout/layout_home_tab"
+             android:layout_weight="1"
+             android:layout_height="match_parent"
+             android:layout_width="match_parent"
+        />
+
+
+
+
+
+</merge>
+

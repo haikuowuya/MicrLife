@@ -1,0 +1,88 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Base application theme. -->
+    <style name="AppTheme.Base" parent="Theme.AppCompat.Light.NoActionBar">
+
+        <!--Toolbar颜色-->
+        <item name="colorPrimary">@color/color_indigo_colorPrimary</item>
+        <!--状态栏颜色-->
+        <item name="colorPrimaryDark">@color/color_indigo_colorPrimaryDark</item>
+        <!--返回键样式-->
+        <item name="drawerArrowStyle">@style/AppTheme.DrawerArrowToggle</item>
+        <item name="android:textColorPrimary">#FFFFFFFF</item>
+        <item name="android:windowAnimationStyle">@style/Animation.Activity.Style</item>
+
+
+    </style>
+
+    <style name="AppTheme" parent="AppTheme.Base">
+        <!-- Customize your theme here. -->
+    </style>
+
+    <style name="AppTheme.DrawerArrowToggle" parent="Base.Widget.AppCompat.DrawerArrowToggle">
+        <item name="color">@android:color/white</item>
+    </style>
+    <style name="Custom" parent="android:Theme.DeviceDefault.Light.Dialog">
+        <item name="DialogTitleAppearance">@android:style/TextAppearance.Medium</item>
+        <!--CityActivity中初始化城市数据的提示-->
+        <item name="DialogTitleText">@string/tv_init_city_data_hint</item>
+        <item name="DialogSpotCount">4</item>
+    </style>
+    <style name="Click.View.Style" parent="AppTheme">
+        <item name="android:background">@drawable/click_selector</item>
+    </style>
+    <style name="Click.ImageView.Style" parent="Click.View.Style"></style>
+    <style name="Click.TextView.Style" parent="Click.View.Style"></style>
+    <style name="Click.TextView.Color.Style" parent="Click.TextView.Style">
+        <item name="android:textColor">@drawable/text_color_selector</item>
+        <item name="android:background">@null</item>
+    </style>
+
+    <style name="Theme.Welcome" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+
+    </style>
+
+    <style name="Animation.Activity.Style" parent="@android:style/Animation.Activity">
+        <item name="android:activityOpenEnterAnimation">@anim/base_slide_right_in</item>
+        <item name="android:activityOpenExitAnimation">@anim/base_stay_orig</item>
+        <item name="android:activityCloseEnterAnimation">@anim/base_stay_orig</item>
+        <item name="android:activityCloseExitAnimation">@anim/base_slide_right_out</item>
+        <item name="android:taskOpenEnterAnimation">@anim/base_slide_right_in</item>
+        <item name="android:taskOpenExitAnimation">@anim/base_stay_orig</item>
+        <item name="android:taskCloseEnterAnimation">@anim/base_stay_orig</item>
+        <item name="android:taskCloseExitAnimation">@anim/base_slide_right_out</item>
+        <item name="android:taskToFrontEnterAnimation">@anim/base_slide_right_in</item>
+        <item name="android:taskToFrontExitAnimation">@anim/base_stay_orig</item>
+        <item name="android:taskToBackEnterAnimation">@anim/base_stay_orig</item>
+        <item name="android:taskToBackExitAnimation">@anim/base_slide_right_out</item>
+        <item name="android:fragmentOpenEnterAnimation">@anim/base_slide_right_in</item>
+        <item name="android:fragmentOpenExitAnimation">@anim/base_stay_orig</item>
+        <item name="android:fragmentCloseEnterAnimation">@anim/base_stay_orig</item>
+        <item name="android:fragmentCloseExitAnimation">@anim/base_slide_right_out</item>
+    </style>
+
+    <style name="Animation.Activity.Translucent.Style" parent="@android:style/Animation.Translucent">
+        <item name="android:windowEnterAnimation">@anim/base_slide_right_in</item>
+        <item name="android:windowExitAnimation">@anim/base_slide_right_out</item>
+        <item name="android:activityOpenEnterAnimation">@anim/base_slide_right_in</item>
+        <item name="android:activityOpenExitAnimation">@anim/base_stay_orig</item>
+        <item name="android:activityCloseEnterAnimation">@anim/base_stay_orig</item>
+        <item name="android:activityCloseExitAnimation">@anim/base_slide_right_out</item>
+        <item name="android:taskOpenEnterAnimation">@anim/base_slide_right_in</item>
+        <item name="android:taskOpenExitAnimation">@anim/base_stay_orig</item>
+        <item name="android:taskCloseEnterAnimation">@anim/base_stay_orig</item>
+        <item name="android:taskCloseExitAnimation">@anim/base_slide_right_out</item>
+        <item name="android:taskToFrontEnterAnimation">@anim/base_slide_right_in</item>
+        <item name="android:taskToFrontExitAnimation">@anim/base_stay_orig</item>
+        <item name="android:taskToBackEnterAnimation">@anim/base_stay_orig</item>
+        <item name="android:taskToBackExitAnimation">@anim/base_slide_right_out</item>
+        <item name="android:fragmentOpenEnterAnimation">@anim/base_slide_right_in</item>
+        <item name="android:fragmentOpenExitAnimation">@anim/base_stay_orig</item>
+        <item name="android:fragmentCloseEnterAnimation">@anim/base_stay_orig</item>
+        <item name="android:fragmentCloseExitAnimation">@anim/base_slide_right_out</item>
+    </style>
+
+
+</resources>

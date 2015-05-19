@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">MicroLife</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="tv_init_city_data_hint">正在初始化城市数据</string>
+</resources>
