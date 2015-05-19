@@ -21,14 +21,20 @@ public class AssetUtils
      */
     private static final String DEFAULT_FILENAME_SUFFIXES = ".json";
     private static final String FILE_CITY_NAME="city";
-
-    public static String readAssetData(Context context, String fileName)
+    private static final String FILE_HOME_NAME="home";
+    public static String getHomeJson(Context context)
     {
-        return readAssetData(context, fileName, DEFAULT_FILENAME_SUFFIXES);
+        return  readAssetData(context ,FILE_HOME_NAME);
     }
+
+
     public  static String getCityJson(Context context)
     {
         return  readAssetData(context, FILE_CITY_NAME);
+    }
+    public static String readAssetData(Context context, String fileName)
+    {
+        return readAssetData(context, fileName, DEFAULT_FILENAME_SUFFIXES);
     }
 
     private static String readAssetData(Context context, String fileName, String suffixes)

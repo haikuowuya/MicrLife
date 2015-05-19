@@ -9,6 +9,7 @@ import android.support.v4.app.Fragment;
 public class BaseFragment   extends Fragment
 {
     protected  BaseActivity mActivity;
+    protected boolean mIsInit = false;
 
     @Override
     public void onAttach(Activity activity)
@@ -16,4 +17,6 @@ public class BaseFragment   extends Fragment
         super.onAttach(activity);
         mActivity = (BaseActivity) activity;
     }
+
+
 }

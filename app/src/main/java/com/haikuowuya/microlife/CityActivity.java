@@ -1,24 +1,21 @@
 package com.haikuowuya.microlife;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Toast;
 
 import com.baidu.location.BDLocation;
-import com.baidu.location.BDLocationListener;
-import com.baidu.location.LocationClient;
 import com.eowise.recyclerview.stickyheaders.OnHeaderClickListener;
 import com.eowise.recyclerview.stickyheaders.StickyHeadersBuilder;
 import com.eowise.recyclerview.stickyheaders.StickyHeadersItemDecoration;
 import com.haikuowuya.microlife.adapter.city.CityAdapter;
 import com.haikuowuya.microlife.adapter.city.InitialHeaderAdapter;
 import com.haikuowuya.microlife.base.BaseActivity;
+
 import com.haikuowuya.microlife.model.CityItem;
 import com.haikuowuya.microlife.mvp.presenter.CityPresenter;
 import com.haikuowuya.microlife.mvp.presenter.LocationPresenter;
@@ -26,12 +23,9 @@ import com.haikuowuya.microlife.mvp.presenter.impl.CityPresenterImpl;
 import com.haikuowuya.microlife.mvp.presenter.impl.LocationPresenterImpl;
 import com.haikuowuya.microlife.mvp.view.CityView;
 import com.haikuowuya.microlife.mvp.view.LocationView;
-import com.haikuowuya.microlife.util.CityUtils;
 import com.haikuowuya.microlife.util.ToastUtils;
 import com.haikuowuya.microlife.view.FastScrollerLinearLayout;
 import com.haikuowuya.microlife.view.common.ScrollingLinearLayoutManager;
-
-import java.util.LinkedList;
 
 import dmax.dialog.SpotsDialog;
 import io.realm.Realm;
@@ -51,6 +45,7 @@ public class CityActivity extends BaseActivity implements CityView, LocationView
     private LocationPresenter mLocationPresenter;
     private FastScrollerLinearLayout mFastScroller;
 
+
     public static void actionCity(Activity activity)
     {
         Intent intent = new Intent(activity, CityActivity.class);
@@ -64,7 +59,7 @@ public class CityActivity extends BaseActivity implements CityView, LocationView
         setContentView(R.layout.activity_city);   //TODO
         initView();
         setTitle(TITLE);
-        setMenuResId(R.mipmap.ic_location);
+        setMenuResId(R.drawable.location_selector);
         fillData();
         setListener();
     }
@@ -117,12 +112,15 @@ public class CityActivity extends BaseActivity implements CityView, LocationView
     {
         Realm realm = Realm.getInstance(this);
         RealmResults<CityItem> mCityItems = realm.allObjects(CityItem.class);
+
         System.out.println("mCityItems.size = " + mCityItems.size());
         if (!mCityItems.isEmpty())
         {
             mRecyclerView.removeAllViews();
             CityAdapter mCityAdapter = new CityAdapter(this, mCityItems);
+
             mRecyclerView.setAdapter(mCityAdapter);
+
             boolean isOverlay = false;
             StickyHeadersItemDecoration decoration = new StickyHeadersBuilder().setAdapter(mCityAdapter).setOnHeaderClickListener(new OnHeaderClickListenerImpl()).setRecyclerView(mRecyclerView).setStickyHeadersAdapter(new InitialHeaderAdapter(mCityItems), isOverlay).build();
             mRecyclerView.addItemDecoration(decoration);
