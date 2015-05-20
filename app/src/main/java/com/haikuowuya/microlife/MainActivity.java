@@ -131,6 +131,17 @@ public class MainActivity extends BaseActivity
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public void onBackPressed()
+    {
+        if(mDrawerLayout.isDrawerOpen(Gravity.START))
+        {
+            mDrawerLayout.closeDrawer(Gravity.START);
+            return;
+        }
+        super.onBackPressed();
+    }
+
     private class OnClickListenerImpl implements View.OnClickListener
     {
         public void onClick(View v)

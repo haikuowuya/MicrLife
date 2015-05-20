@@ -14,40 +14,46 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.Volley;
 import com.haikuowuya.microlife.R;
 import com.haikuowuya.microlife.WelcomeActivity;
 import com.haikuowuya.microlife.util.ViewUtils;
 import com.haikuowuya.microlife.view.common.DrawerArrowDrawable;
+import com.squareup.okhttp.Callback;
+import com.squareup.okhttp.OkHttpClient;
+import com.squareup.okhttp.Request;
+import com.squareup.okhttp.Response;
+
+import java.io.IOException;
 
 /**
  * Created by raiyi-suzhou on 2015/5/5 0005.
  */
-public class BaseActivity extends AppCompatActivity   implements Response.Listener, Response.ErrorListener
+public class BaseActivity extends AppCompatActivity implements Callback
 {
     protected BaseActivity mActivity;
     protected SharedPreferences mPreferences;
     private FrameLayout mFrameContainer;
     protected Toolbar mToolbar;
-    /***中间的标题*/
+    /**
+     * 中间的标题
+     */
     private TextView mTvTitle;
-    /**右边的菜单按钮*/
+    /**
+     * 右边的菜单按钮
+     */
     private ImageView mIvMenu;
-    protected  RequestQueue mRequestQueue;
 
     public SharedPreferences getPreferences()
     {
-        return  mPreferences;
+        return mPreferences;
     }
+
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         mActivity = this;
-        mRequestQueue = Volley.newRequestQueue(mActivity);
+
         mPreferences = getSharedPreferences(getPackageName(), Context.MODE_PRIVATE);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         int statusColor = getResources().getColor(R.color.color_indigo_colorPrimaryDark);
@@ -58,8 +64,6 @@ public class BaseActivity extends AppCompatActivity   implements Response.Listen
         }
 
     }
-
-
 
     @Override
     public void setContentView(int layoutResID)
@@ -120,31 +124,35 @@ public class BaseActivity extends AppCompatActivity   implements Response.Listen
     {
         mTvTitle.setText(title);
     }
-    protected  void setMenuResId(int resId)
+
+    protected void setMenuResId(int resId)
     {
         mIvMenu.setImageResource(resId);
     }
-    protected  void onMenuClickListener(View.OnClickListener onClickListener)
+
+    protected void onMenuClickListener(View.OnClickListener onClickListener)
     {
         mIvMenu.setOnClickListener(onClickListener);
     }
-    protected  void onTitleClickListener(View.OnClickListener onClickListener)
+
+    protected void onTitleClickListener(View.OnClickListener onClickListener)
     {
         mTvTitle.setOnClickListener(onClickListener);
     }
+
     public ViewGroup getContentViewGroup()
     {
-        return  mFrameContainer;
+        return mFrameContainer;
     }
 
     @Override
-    public void onErrorResponse(VolleyError error)
+    public void onFailure(Request request, IOException e)
     {
 
     }
 
     @Override
-    public void onResponse(Object response)
+    public void onResponse(Response response) throws IOException
     {
 
     }

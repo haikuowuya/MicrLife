@@ -9,6 +9,7 @@ import com.haikuowuya.microlife.Application;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -17,15 +18,30 @@ import java.util.Map;
  */
 public class ParamsUtils
 {
-
-    public static Map<String, String> addPublic(Context context, Map<String, String> params)
+    public static Map<String, String> addPublic(Context context)
     {
-
+        Map<String, String> params= new HashMap<>();
         addPublicParmas(context, params);
         addMd5Parmas(params);
         System.out.println("添加公共参数");
         return params;
-
+    }
+    public static String  paramsToString(Context context)
+    {
+        Map<String,String> params = addPublic(context);
+        StringBuffer stringBuffer = new StringBuffer();
+        for(String str: params.keySet())
+        {
+            stringBuffer.append(str);
+            stringBuffer.append("=");
+            stringBuffer.append(params.get(str));
+            stringBuffer.append("&");
+        }
+        if(stringBuffer.length() > 0)
+        {
+            stringBuffer = stringBuffer.deleteCharAt(stringBuffer.length()-1);
+        }
+        return  stringBuffer.toString();
     }
 
     /**

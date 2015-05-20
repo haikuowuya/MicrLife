@@ -6,16 +6,16 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 import com.haikuowuya.microlife.base.BaseActivity;
+import com.haikuowuya.microlife.util.OkHttpUtils;
 import com.haikuowuya.microlife.util.ParamsUtils;
+import com.haikuowuya.microlife.util.ToastUtils;
 import com.haikuowuya.microlife.util.WeatherUtils;
+import com.squareup.okhttp.OkHttpClient;
+import com.squareup.okhttp.Request;
+import com.squareup.okhttp.Response;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.io.IOException;
 
 /**
  * Created by raiyi-suzhou on 2015/5/18 0018.
@@ -25,19 +25,21 @@ public class WeatherActivity extends BaseActivity
 
     public static void actionWeather(Activity activity)
     {
-        Intent intent = new Intent(activity , WeatherActivity.class);
+        Intent intent = new Intent(activity, WeatherActivity.class);
         activity.startActivity(intent);
     }
+
     private RecyclerView mRecyclerView;
+
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_weather);
         String city = mPreferences.getString(Constants.PREF_LOCATION_CITY, Constants.DEFAULT_CITY);
-        if(city.contains(Constants.SHI) && city.substring(city.length()-1).equals(Constants.SHI))
+        if (city.contains(Constants.SHI) && city.substring(city.length() - 1).equals(Constants.SHI))
         {
-            city = city.substring(0,city.length()-1);
+            city = city.substring(0, city.length() - 1);
         }
         setTitle(city + "天气");
         initView();
@@ -53,29 +55,23 @@ public class WeatherActivity extends BaseActivity
     protected void onResume()
     {
         super.onResume();
-        StringRequest request =  new StringRequest(WeatherUtils.getWeatherUrl("101190401"), this, this){
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError
-            {
-                Map<String, String> params = new HashMap<>();
-                ParamsUtils.addPublic(mActivity, params);
-                return params ;
-            }
-        };
-        System.out.println("requestUrl = " + request.getUrl() );
-      mRequestQueue.add(request);
-       mRequestQueue.start();
+        Request request = new Request.Builder().url(WeatherUtils.getWeatherUrl("101010100")).build();
+
+        OkHttpUtils.asyncExecute(request, this);
+
     }
 
     @Override
-    public void onResponse(Object response)
+    public void onFailure(Request request, IOException e)
     {
-        System.out.println("response = " + response.toString() );
+        super.onFailure(request, e);
     }
 
     @Override
-    public void onErrorResponse(VolleyError error)
+    public void onResponse(Response response) throws IOException
     {
-        super.onErrorResponse(error);
+        super.onResponse(response);
+        ToastUtils.showCrouton(mActivity, response.body().string(), getContentViewGroup());
+        System.out.println("params.toString = " + ParamsUtils.paramsToString(mActivity ));
     }
 }
