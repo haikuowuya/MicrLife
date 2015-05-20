@@ -14,6 +14,8 @@ import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 
 import java.util.LinkedList;
 
+import in.srain.cube.views.ptr.PtrClassicFrameLayout;
+
 /**
  * Created by raiyi-suzhou on 2015/5/19 0019.
  */
@@ -26,6 +28,7 @@ public class HomePagerAdapter extends PagerAdapter
     {
         mContext = context;
         mData = data;
+
 
     }
 

@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:weightSum="5"
         android:gravity="center"
-        android:layout_height="64dp">
+        android:layout_height="48dp">
         <include layout="@layout/layout_bottom_bar"  />
     </LinearLayout>
 

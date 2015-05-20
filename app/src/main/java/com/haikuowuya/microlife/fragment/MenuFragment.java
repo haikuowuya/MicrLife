@@ -51,8 +51,11 @@ public class MenuFragment extends BaseFragment
         mListView.setOnItemClickListener(new OnItemClcikListenerImpl());
     }
 
-
-
+    @Override
+    public String getFragmentTitle()
+    {
+        return "左菜单";
+    }
 
     private class MenuAdapter extends  BaseAdapter<ListItem>
     {

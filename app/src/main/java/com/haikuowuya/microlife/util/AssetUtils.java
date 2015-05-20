@@ -22,11 +22,16 @@ public class AssetUtils
     private static final String DEFAULT_FILENAME_SUFFIXES = ".json";
     private static final String FILE_CITY_NAME="city";
     private static final String FILE_HOME_NAME="home";
+    private static  final String FILE_FIND_NAME="find";
     public static String getHomeJson(Context context)
     {
         return  readAssetData(context ,FILE_HOME_NAME);
     }
 
+    public static String getFindJson(Context context)
+    {
+        return  readAssetData(context, FILE_FIND_NAME);
+    }
 
     public  static String getCityJson(Context context)
     {

@@ -18,6 +18,10 @@ import com.haikuowuya.microlife.util.HomeItemUtils;
 import com.haikuowuya.microlife.util.ToastUtils;
 import com.haikuowuya.microlife.view.InfiniteViewPagerIndicatorView;
 
+import in.srain.cube.views.ptr.PtrClassicFrameLayout;
+import in.srain.cube.views.ptr.PtrFrameLayout;
+import in.srain.cube.views.ptr.PtrHandler;
+
 /**
  * Created by raiyi-suzhou on 2015/5/19 0019.
  */
@@ -33,12 +37,13 @@ public class FlowFragment extends BaseFragment
     }
     private LinearLayout mLinearHomeContainer;
     private HomeItemHolder mHomeItemHolder;
+    private PtrClassicFrameLayout mPtrContainer;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
-         View view = inflater.inflate(R.layout.fragment_home, null);
+         View view = inflater.inflate(R.layout.fragment_flow, null);
         initView(view);
         mIsInit = true;
 
@@ -46,8 +51,34 @@ public class FlowFragment extends BaseFragment
     }
 
     private void initView(View view)
-    {
+    {        mPtrContainer = (PtrClassicFrameLayout) view.findViewById(R.id.ptr_container);
         mLinearHomeContainer = (LinearLayout) view.findViewById(R.id.linear_home_container);
+    }
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState)
+    {
+        super.onActivityCreated(savedInstanceState);
+        mPtrContainer.setPtrHandler(new PtrHandler()
+        {
+            @Override
+            public boolean checkCanDoRefresh(PtrFrameLayout ptrFrameLayout, View view, View view1)
+            {
+                return true;
+            }
+
+            @Override
+            public void onRefreshBegin(final PtrFrameLayout ptrFrameLayout)
+            {
+                ptrFrameLayout.postDelayed(new Runnable()
+                {
+                    @Override
+                    public void run()
+                    {
+                        ptrFrameLayout.refreshComplete();
+                    }
+                }, 2000L);
+            }
+        });
     }
 
 
@@ -103,5 +134,11 @@ public class FlowFragment extends BaseFragment
         frameLayout.addView(mProgressBar, params);
         mProgressBar.setVisibility(View.GONE);
         return mProgressBar;
+    }
+
+    @Override
+    public String getFragmentTitle()
+    {
+        return "流量";
     }
 }

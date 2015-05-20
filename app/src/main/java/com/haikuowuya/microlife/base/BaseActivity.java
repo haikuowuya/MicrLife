@@ -120,7 +120,7 @@ public class BaseActivity extends AppCompatActivity implements Callback
         return super.onOptionsItemSelected(item);
     }
 
-    protected void setTitle(String title)
+    public void setTitleText(CharSequence title)
     {
         mTvTitle.setText(title);
     }

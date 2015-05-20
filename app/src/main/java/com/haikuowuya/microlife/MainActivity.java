@@ -2,29 +2,17 @@ package com.haikuowuya.microlife;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.os.PersistableBundle;
-import android.support.v4.view.PagerAdapter;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.haikuowuya.microlife.base.BaseActivity;
 import com.haikuowuya.microlife.fragment.MainFragment;
 import com.haikuowuya.microlife.fragment.MenuFragment;
-import com.haikuowuya.microlife.util.DensityUtils;
-import com.haikuowuya.microlife.util.ViewUtils;
-import com.haikuowuya.microlife.view.VerticalViewPager;
-import com.haikuowuya.microlife.view.common.DepthPageTransformer;
 import com.haikuowuya.microlife.view.common.DrawerArrowDrawable;
 
 public class MainActivity extends BaseActivity
@@ -55,7 +43,7 @@ public class MainActivity extends BaseActivity
         getSupportFragmentManager().beginTransaction().add(R.id.frame_center_container, MainFragment.newInstance()).commit();
         installDrawerLayout();
         setListener();
-        setTitle("苏州");
+        setTitleText("苏州");
     }
 
     private void initView()

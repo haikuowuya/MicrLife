@@ -31,6 +31,9 @@
     <style name="Click.View.Style" parent="AppTheme">
         <item name="android:background">@drawable/click_selector</item>
     </style>
+    <style name="Default.TextView.TextColor.style" parent="AppTheme">
+        <item name="android:textColor">#FF000000</item>
+    </style>
     <style name="Click.ImageView.Style" parent="Click.View.Style"></style>
     <style name="Click.TextView.Style" parent="Click.View.Style"></style>
     <style name="Click.TextView.Color.Style" parent="Click.TextView.Style">

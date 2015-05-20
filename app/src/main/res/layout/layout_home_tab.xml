@@ -3,14 +3,13 @@
     android:layout_width="match_parent"
     android:layout_height="48dp"
     android:gravity="center"
-    android:padding="5dp"
+    android:padding="4dp"
     >
 
     <ImageView
         android:id="@+id/iv_home_image"
         android:layout_width="24dp"
         android:layout_height="24dp"
-
         android:layout_centerHorizontal="true"
         android:src="@drawable/home_home_selector"/>
 

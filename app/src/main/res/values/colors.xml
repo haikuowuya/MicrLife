@@ -7,5 +7,6 @@
     <color name="color_list_item_pressed_color">#FFFFDF00</color>
     <color name="color_list_item_long_pressed_color">#FFFF4F00</color>
     <color name="color_color_accent_color">@color/color_indigo_colorPrimaryDark</color>
+    <color name="color_find_line_color">#FFCACACA</color>
 
 </resources>

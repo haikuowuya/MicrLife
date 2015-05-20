@@ -1,0 +1,478 @@
+{
+card_joke: {
+cardColor: "#84ce65",
+cardImg: "",
+cardKey: "joke",
+cardName: "笑话",
+cardPosition: "",
+cardState: 0,
+cardToType: 2,
+cardToValue: "http://m.qiushibaike.com/?ref=116114?source=all",
+data: [
+{
+content: "约约约！约个吊啊，我约到的竟然是对面小区的，年前约的，约了4次，现在怀孕了，问题是她说她两口子近半年没同居了...咋办啊，咋办啊...双方都有家有孩子的.........完了",
+img: "",
+title: "",
+url: ""
+},
+{
+content: "一众女生讨论旅途安全问题。不知不觉间，将问话题焦点转移到“女孩出门，为了安全，应该带刀还是带套？？？",
+img: "",
+title: "",
+url: ""
+},
+{
+content: "房价上涨是为了让我们好好...工...作，油价上涨是为了让我们好好节约，肉价上涨是为了让我们好好减肥，蔬菜上涨是为了让我们低碳生活，墓地上涨是为了让我们好好活着，工资不涨是为了我们努力奋斗。为了让我们过上幸福、高尚的生活，国家真是用心良苦，感谢政...府，感谢国家，感谢党！",
+img: "",
+title: "",
+url: ""
+},
+{
+content: "广告时间：今天做人流，明天就上班！",
+img: "",
+title: "",
+url: ""
+},
+{
+content: "儿子说要去外面闯，我笑着说：“真像你爸爸年轻时候，那时候我也是意气风发的对你爷爷说，不混出点名堂就不回家了。”儿子若有所思：“爸爸，这就是我从没见过爷爷的原因？”",
+img: "",
+title: "",
+url: ""
+}
+]
+},
+card_lottery: {
+cardColor: "#ff195f",
+cardImg: "",
+cardKey: "lottery",
+cardName: "彩票",
+cardPosition: "",
+cardState: 0,
+cardToType: 2,
+cardToValue: "http://wsh.so/u/rrRHSP",
+data: [
+{
+blue: "",
+lotteryDate: "2015-04-09",
+nper: "15092",
+red: "7,0,3,1,0",
+title: "排列五",
+type: 4,
+url: "http://wsh.so/u/rrRHdo"
+},
+{
+blue: "",
+lotteryDate: "2015-04-09",
+nper: "15092",
+red: "7,0,3",
+title: "排列三",
+type: 3,
+url: "http://wsh.so/u/rrRHdy"
+},
+{
+blue: "",
+lotteryDate: "2015-04-09",
+nper: "2015092",
+red: "02,05,06,09,12",
+title: "华东15选5",
+type: 8,
+url: "http://wsh.so/u/rrRHdT"
+},
+{
+blue: "",
+lotteryDate: "2015-04-09",
+nper: "2015092",
+red: "6,3,4",
+title: "福彩3D",
+type: 5,
+url: "http://wsh.so/u/rrRHdp"
+},
+{
+blue: "16",
+lotteryDate: "2015-04-09",
+nper: "2015040",
+red: "13,16,18,27,30,32",
+title: "双色球",
+type: 1,
+url: "http://wsh.so/u/rrRHdI"
+},
+{
+blue: "",
+lotteryDate: "2015-04-07",
+nper: "15039",
+red: "5,9,9,6,3,6,4",
+title: "七星彩",
+type: 9,
+url: "http://wsh.so/u/rrRHdN"
+},
+{
+blue: "",
+lotteryDate: "2015-04-08",
+nper: "15039",
+red: "03,06,07,16,25",
+title: "大乐透",
+type: 2,
+url: "http://wsh.so/u/rrRHdD"
+},
+{
+blue: "",
+lotteryDate: "2015-04-08",
+nper: "2015039",
+red: "9,8,9,2,6,6",
+title: "东方6 1",
+type: 7,
+url: "http://wsh.so/u/rrRHdX"
+},
+{
+blue: "14",
+lotteryDate: "2015-04-08",
+nper: "2015039",
+red: "04,05,17,20,22,23,27",
+title: "七乐彩",
+type: 6,
+url: "http://wsh.so/u/rrRHdl"
+}
+]
+},
+card_movie: {
+cardColor: "#2ebdff",
+cardImg: "",
+cardKey: "movie",
+cardName: "影讯",
+cardPosition: "",
+cardState: 0,
+cardToType: 2,
+cardToValue: "http://wsh.so/u/rrRHSZ",
+data: [
+{
+img: "http://src.wo116114.com/diskaccess.do?id=1297391",
+movieDate: "2015-04-10",
+score: "",
+titleCh: "特功明星",
+titleEn: "Kung Fu Style(2015)",
+type: "动画",
+url: "http://wsh.so/u/rrRHRz"
+},
+{
+img: "http://src.wo116114.com/diskaccess.do?id=1297388",
+movieDate: "2015-02-06",
+score: "5.6",
+titleCh: "神探驾到",
+titleEn: "An Inspector Calls(2015)",
+type: "爱情|动作|奇幻",
+url: "http://wsh.so/u/rrRHRu"
+},
+{
+img: "http://src.wo116114.com/diskaccess.do?id=1297380",
+movieDate: "2015-04-24",
+score: "",
+titleCh: "左耳",
+titleEn: "The Left Ear(2015)",
+type: "",
+url: "http://wsh.so/u/rrRHHI"
+}
+]
+},
+card_history: {
+cardColor: "#4aac4a",
+cardImg: "",
+cardKey: "history",
+cardName: "历史上的今天",
+cardPosition: "",
+cardState: 0,
+cardToType: 2,
+cardToValue: "http://v1.api.wo116114.com/resource/card-goHistoryPage.do",
+data: [
+{
+content: [
+{
+date: "1815年",
+msg: "印尼坦博拉火山爆发，造成9万多人死亡"
+},
+{
+date: "1847年",
+msg: "美籍报业大亨普利策诞辰"
+},
+{
+date: "1917年",
+msg: "列宁结束逃亡生活回到彼得格勒"
+},
+{
+date: "1927年",
+msg: "汪精卫篡夺武汉军政大权"
+},
+{
+date: "1932年",
+msg: "兴登堡选票上升击败希特勒"
+},
+{
+date: "1938年",
+msg: "鲁迅艺术学院在延安成立"
+},
+{
+date: "1953年",
+msg: "瑞典政治家哈马舍尔德当选为第二任联合国秘书长"
+},
+{
+date: "1961年",
+msg: "吴庭艳在越南大选中以压倒多数获胜"
+},
+{
+date: "1970年",
+msg: "麦卡特尼离去，甲壳虫乐队分裂"
+},
+{
+date: "1971年",
+msg: "美国乒乓球队访问中国，打开中美关系的大门"
+},
+{
+date: "1972年",
+msg: "《禁止生物武器公约》签署"
+},
+{
+date: "1974年",
+msg: "中央对批林批孔运动作出决定"
+},
+{
+date: "1977年",
+msg: "邓小平批评“两个凡是”"
+},
+{
+date: "1980年",
+msg: "中国第一家中外合资企业“北京航空食品有限公司”被批准成立"
+},
+{
+date: "1992年",
+msg: "《红太阳》歌带在全国畅销"
+},
+{
+date: "1994年",
+msg: "科学家发现喜马拉雅山类似空中楼阁"
+},
+{
+date: "1995年",
+msg: "党和国家领导人陈云逝世"
+},
+{
+date: "2008年",
+msg: "美元对人民币汇率中间价报1：6.9920 首度“破7”"
+},
+{
+date: "2010年",
+msg: "波兰总统专机在俄坠毁 总统夫妇和86政要遇难"
+}
+],
+historyDate: "2015-04-10",
+img: "",
+subtitle: "乙未 羊年 二月二十一",
+title: "2015年4月10日 星期五",
+url: ""
+}
+]
+},
+card_zodiac: {
+cardColor: "#bf79e2",
+cardImg: "",
+cardKey: "zodiac",
+cardName: "星座",
+cardPosition: "",
+cardState: 0,
+cardToType: 2,
+cardToValue: "http://m.xzw.com/fortune/",
+data: [
+{
+avgScore: "3",
+healthScore: "4",
+loveScore: "1",
+luckColor: "米色",
+luckContent: "爱人经常加班加点，你一个人在家的时间会感到很无聊，不如培养起自己的兴趣爱好来加以充实生活吧；工作上面需要他人的协助，一个人去运作显然是很难的，难以找到适合自己的做事方案，所以今日工作起来挺费劲的，常常会忙得焦头烂额。",
+luckNumber: 3,
+moneyScore: "4",
+relative: "双鱼座",
+titleCh: "白羊座",
+titleEn: "",
+type: 1,
+url: "",
+workScore: "5",
+zodiacDate: "2015-04-10"
+},
+{
+avgScore: "3",
+healthScore: "5",
+loveScore: "4",
+luckColor: "白色",
+luckContent: "你今天本来的心情还是不错的，不过这中间会有突发事件发生，让你变得烦躁起来；今天疲惫感加重，不过这个时候会出现主动给你提供帮助的人，这让你十分欣慰；职场周围都会有人有喜事，免不了人情上的往来，但追求简单的你一向很烦这些礼节。",
+luckNumber: 8,
+moneyScore: "1",
+relative: "白羊座",
+titleCh: "金牛座",
+titleEn: "",
+type: 2,
+url: "",
+workScore: "2",
+zodiacDate: "2015-04-10"
+},
+{
+avgScore: "3",
+healthScore: "5",
+loveScore: "4",
+luckColor: "红色",
+luckContent: "最近的财运还算可以，能收获到一些不错的投资或者理财方面的消息，不过你也不能全部听信，应该多结合别人的意见，然后再融入自己的意见进行考量，最后制定出一套最适合自己的方案；对于爱情，你依旧坚持自己的态度，不愿意将就。",
+luckNumber: 9,
+moneyScore: "3",
+relative: "金牛座",
+titleCh: "双子座",
+titleEn: "",
+type: 3,
+url: "",
+workScore: "3",
+zodiacDate: "2015-04-10"
+},
+{
+avgScore: "3",
+healthScore: "4",
+loveScore: "5",
+luckColor: "粉色",
+luckContent: "巨蟹的你跟爱人的感情融洽，如果你能表现出自己更为热情的一面，相信能更加调动起对方的热情；好运伴随着你，心想的事情多半都能如愿，不妨跟身边的人分享你的快乐，你会更快乐的；单身者应该多去参与聚会，才能拓展自己的朋友圈。",
+luckNumber: 1,
+moneyScore: "1",
+relative: "双子座",
+titleCh: "巨蟹座",
+titleEn: "",
+type: 4,
+url: "",
+workScore: "4",
+zodiacDate: "2015-04-10"
+},
+{
+avgScore: "4",
+healthScore: "4",
+loveScore: "5",
+luckColor: "绿色",
+luckContent: "今天的精神状态还算不错，跟家人在一起的时间比较多，支出也相对增加，不过只要家人能感到开心，你会觉得一切都是值得的；恋爱中的狮子会表现出自己温柔体贴的一面，跟对方也能坦诚相待，在一起能感到幸福，但还是少了些默契。",
+luckNumber: 4,
+moneyScore: "3",
+relative: "巨蟹座",
+titleCh: "狮子座",
+titleEn: "",
+type: 5,
+url: "",
+workScore: "3",
+zodiacDate: "2015-04-10"
+},
+{
+avgScore: "3",
+healthScore: "5",
+loveScore: "3",
+luckColor: "紫色",
+luckContent: "处女的你最近有了自己喜欢的对象，有空的时候你就想要约对方，也会时不时制造惊喜，对方也挺享受跟你相处的瞬间；学生一族晚上尽量不要熬夜，因为这样会直接影响到你第二天的学习质量，需要让自己保持充沛的体力。",
+luckNumber: 3,
+moneyScore: "4",
+relative: "狮子座",
+titleCh: "处女座",
+titleEn: "",
+type: 6,
+url: "",
+workScore: "3",
+zodiacDate: "2015-04-10"
+},
+{
+avgScore: "4",
+healthScore: "4",
+loveScore: "3",
+luckColor: "红色",
+luckContent: "爱情有些是需要靠自己去争取的，你冷淡的态度会给人拒之千里的感觉，应该改变自己，让自身变得更加有魅力，培养亲和力很关键；工作上遇到的困惑不要一味的去钻牛角尖，可以向同事询问，他们能够给你们最好的答案。",
+luckNumber: 6,
+moneyScore: "5",
+relative: "处女座",
+titleCh: "天秤座",
+titleEn: "",
+type: 7,
+url: "",
+workScore: "3",
+zodiacDate: "2015-04-10"
+},
+{
+avgScore: "3",
+healthScore: "5",
+loveScore: "4",
+luckColor: "黄色",
+luckContent: "天蝎的你一方面在工作，一方面还在上进修班提升自己，周末的时候还会跟身边的朋友去当义工，一天下来你的时间都安排满了，建议你有空还是抽出时间好好放松一下自己，无论哪条弦都不能绷紧的；感情生活较为空虚，看着一对对的情侣会心生羡慕。",
+luckNumber: 4,
+moneyScore: "4",
+relative: "天秤座",
+titleCh: "天蝎座",
+titleEn: "",
+type: 8,
+url: "",
+workScore: "1",
+zodiacDate: "2015-04-10"
+},
+{
+avgScore: "4",
+healthScore: "4",
+loveScore: "3",
+luckColor: "灰色",
+luckContent: "射手的你最近跟恋人相处得不是很愉快，多想想你们之前的快乐时光，多用心跟地方沟通交流，相信关系能变得明朗起来；在工作当中可谓是守得云开见月明，前段时间的努力付出今天终于得到了回报，但还是需要你继续努力。",
+luckNumber: 7,
+moneyScore: "3",
+relative: "白羊座",
+titleCh: "射手座",
+titleEn: "",
+type: 9,
+url: "",
+workScore: "5",
+zodiacDate: "2015-04-10"
+},
+{
+avgScore: "3",
+healthScore: "5",
+loveScore: "5",
+luckColor: "黑色",
+luckContent: "天气变化挺大的，摩羯应当要多注意自身的健康状况，时冷时热很容易就着凉了，出门需多备一件外套；工作进展比较缓慢，今天某些任务的进度可能会受到影响，最好要先做好心理准备，需要先制定一个应对方案，以备不时之需。",
+luckNumber: 0,
+moneyScore: "2",
+relative: "双鱼座",
+titleCh: "摩羯座",
+titleEn: "",
+type: 10,
+url: "",
+workScore: "3",
+zodiacDate: "2015-04-10"
+},
+{
+avgScore: "2",
+healthScore: "4",
+loveScore: "1",
+luckColor: "黄色",
+luckContent: "现在的你不必因为他人生活中闪闪发光的那些事情而迷失自己想要的，因为完全没有必要羡慕他人，因为他们有他们自己想要的，而你也有你自己想要的生活；今天会想要和异性朋友一起约会，可能在约会当中会遇到心仪的对象。",
+luckNumber: 2,
+moneyScore: "2",
+relative: "处女座",
+titleCh: "水瓶座",
+titleEn: "",
+type: 11,
+url: "",
+workScore: "4",
+zodiacDate: "2015-04-10"
+},
+{
+avgScore: "4",
+healthScore: "5",
+loveScore: "5",
+luckColor: "蓝色",
+luckContent: "在跟恋人的相处中，主要是你在主导着感情的发展，你能安排很浪漫的约会，让你们的感情生活丰富多彩的，对彼此的未来也充满了信心，已经有了成家的念头；今天与他人互动较频繁，还能认识到不少新朋友，多结交朋友对各个方面都有好处。",
+luckNumber: 6,
+moneyScore: "2",
+relative: "水瓶座",
+titleCh: "双鱼座",
+titleEn: "",
+type: 12,
+url: "",
+workScore: "4",
+zodiacDate: "2015-04-10"
+}
+]
+},
+status: "1"
+}

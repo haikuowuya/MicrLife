@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    android:id="@+id/card_view"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_vertical"
+    android:layout_marginTop="8dp"
+    android:background="#FFFFFFFF"
+    card_view:cardCornerRadius="4dp">
+
+    <RelativeLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+
+        <LinearLayout
+            android:id="@+id/linear_joke_title_container"
+            android:layout_width="match_parent"
+            android:layout_height="48dp">
+
+            <ImageView
+                android:layout_width="48dp"
+                android:layout_height="match_parent"
+                android:padding="8dp"
+                android:src="@mipmap/ic_joke"/>
+
+            <TextView
+                style="@style/Default.TextView.TextColor.style"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+
+                android:text="笑话"/>
+
+            <ImageView
+                android:layout_width="48dp"
+                android:layout_height="match_parent"
+                android:padding="8dp"
+                android:src="@mipmap/ic_arrow_right"/>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/linear_joke_title_container"
+            android:background="@color/color_find_line_color"/>
+
+        <TextView
+            android:id="@+id/tv_joke"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/linear_joke_title_container"
+            android:layout_marginTop="1dp"
+            android:padding="8dp"
+            android:text="@string/tv_joke_content"
+            android:textColor="#FF000000"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/tv_joke"
+            android:background="@color/color_find_line_color"/>
+
+        <TextView
+            android:id="@+id/tv_refresh"
+            style="@style/Click.TextView.Style"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_below="@+id/tv_joke"
+            android:layout_marginTop="1dp"
+            android:gravity="center"
+            android:text="换一换"
+            android:textColor="#FF000000"
+            tools:text="换一换"/>
+
+        <ProgressBar
+            android:id="@+id/pb_progress"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_below="@+id/tv_joke"
+            android:layout_centerHorizontal="true"
+
+            android:layout_marginTop="1dp"
+            android:indeterminateDrawable="@drawable/drawable_loading"
+            android:padding="12dp"
+            android:visibility="gone"/>
+
+    </RelativeLayout>
+
+</android.support.v7.widget.CardView>

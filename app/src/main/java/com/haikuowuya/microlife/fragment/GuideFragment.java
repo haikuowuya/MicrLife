@@ -22,4 +22,9 @@ public class GuideFragment extends BaseFragment
         return  view;
     }
 
+    @Override
+    public String getFragmentTitle()
+    {
+        return null;
+    }
 }

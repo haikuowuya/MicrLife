@@ -80,6 +80,12 @@ public class MainFragment extends BaseFragment
         }
     }
 
+    @Override
+    public String getFragmentTitle()
+    {
+        return "首页";
+    }
+
     private class OnPagerChanageListenerImpl implements ViewPager.OnPageChangeListener
     {
         @Override
@@ -129,6 +135,7 @@ public class MainFragment extends BaseFragment
            // textView.setTextColor(mActivity.getResources().getColor(R.color.color_indigo_colorPrimaryDark));
             textView.setTextColor(0xFFFF0000);
         }
+       //mActivity.setTitleText(mViewPager.getAdapter().getPageTitle(mSelectedPosition).toString());
 
     }
 
@@ -167,6 +174,12 @@ public class MainFragment extends BaseFragment
             public int getCount()
             {
                 return fragments.length;
+            }
+
+            @Override
+            public CharSequence getPageTitle(int position)
+            {
+                return  fragments[position].getFragmentTitle();
             }
         };
         return fragmentPagerAdapter;

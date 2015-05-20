@@ -11,7 +11,6 @@ import com.haikuowuya.microlife.util.OkHttpUtils;
 import com.haikuowuya.microlife.util.ParamsUtils;
 import com.haikuowuya.microlife.util.ToastUtils;
 import com.haikuowuya.microlife.util.WeatherUtils;
-import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
 
@@ -41,7 +40,7 @@ public class WeatherActivity extends BaseActivity
         {
             city = city.substring(0, city.length() - 1);
         }
-        setTitle(city + "天气");
+        setTitleText(city + "天气");
         initView();
     }
 

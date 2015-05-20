@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.View;
 
 import com.baidu.location.BDLocation;
@@ -58,7 +57,7 @@ public class CityActivity extends BaseActivity implements CityView, LocationView
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_city);   //TODO
         initView();
-        setTitle(TITLE);
+        setTitleText(TITLE);
         setMenuResId(R.drawable.location_selector);
         fillData();
         setListener();
