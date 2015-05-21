@@ -8,7 +8,7 @@ import android.widget.TextView;
 
 import com.eowise.recyclerview.stickyheaders.StickyHeadersAdapter;
 import com.haikuowuya.microlife.R;
-import com.haikuowuya.microlife.model.CityItem;
+import com.haikuowuya.microlife.mvp.model.CityItem;
 
 import java.util.List;
 

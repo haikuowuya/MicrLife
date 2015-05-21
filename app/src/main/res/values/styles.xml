@@ -13,6 +13,7 @@
         <item name="android:windowAnimationStyle">@style/Animation.Activity.Style</item>
 
 
+        <item name="vpiCirclePageIndicatorStyle">@style/VpiStyle</item>
     </style>
 
     <style name="AppTheme" parent="AppTheme.Base">
@@ -45,6 +46,9 @@
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowFullscreen">true</item>
 
+    </style>
+    <style name="VpiStyle" >
+       <item name="fillColor">@color/color_indigo_colorPrimaryDark</item>
     </style>
 
     <style name="Animation.Activity.Style" parent="@android:style/Animation.Activity">

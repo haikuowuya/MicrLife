@@ -17,6 +17,7 @@ import com.haikuowuya.microlife.view.common.DrawerArrowDrawable;
 
 public class MainActivity extends BaseActivity
 {
+    private static  final String DEFAULT_CITY_TITLE="苏州";
     public static void actionMain(Activity activity)
     {
         Intent intent = new Intent(activity, MainActivity.class);
@@ -43,7 +44,7 @@ public class MainActivity extends BaseActivity
         getSupportFragmentManager().beginTransaction().add(R.id.frame_center_container, MainFragment.newInstance()).commit();
         installDrawerLayout();
         setListener();
-        setTitleText("苏州");
+        setMenuResId(R.mipmap.ic_qr);
     }
 
     private void initView()
@@ -55,6 +56,7 @@ public class MainActivity extends BaseActivity
     {
         OnClickListenerImpl onClickListenerImpl = new OnClickListenerImpl();
         onTitleClickListener(onClickListenerImpl);
+        onMenuClickListener(onClickListenerImpl);
     }
 
     private void installDrawerLayout()
@@ -130,6 +132,12 @@ public class MainActivity extends BaseActivity
         super.onBackPressed();
     }
 
+    @Override
+    public CharSequence getActivityTitle()
+    {
+        return DEFAULT_CITY_TITLE;
+    }
+
     private class OnClickListenerImpl implements View.OnClickListener
     {
         public void onClick(View v)
@@ -138,6 +146,9 @@ public class MainActivity extends BaseActivity
             {
                 case R.id.tv_center_title:
                     CityActivity.actionCity(mActivity);
+                    break;
+                case R.id.iv_menu:
+                    QRActivity.actionQR(mActivity);
                     break;
             }
         }

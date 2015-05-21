@@ -3,8 +3,7 @@ package com.haikuowuya.microlife.util;
 import android.content.Context;
 import android.text.TextUtils;
 
-import com.haikuowuya.microlife.Constants;
-import com.haikuowuya.microlife.model.CityItem;
+import com.haikuowuya.microlife.mvp.model.CityItem;
 
 import org.json.JSONArray;
 import org.json.JSONException;

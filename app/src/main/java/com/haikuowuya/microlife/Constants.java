@@ -7,6 +7,7 @@ public class Constants
 {
     public static final String SHI="市";
     public static final String DEFAULT_CITY="苏州";
+    public static final String PREF_WEATHER_JSON="weather_json";
     /***
      * 保存在SharedPreference中的定位城市KEY
      */

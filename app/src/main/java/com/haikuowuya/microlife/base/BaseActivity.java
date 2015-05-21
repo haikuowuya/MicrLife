@@ -25,15 +25,18 @@ import com.squareup.okhttp.Response;
 
 import java.io.IOException;
 
+import dmax.dialog.SpotsDialog;
+
 /**
  * Created by raiyi-suzhou on 2015/5/5 0005.
  */
-public class BaseActivity extends AppCompatActivity implements Callback
+public abstract class BaseActivity extends AppCompatActivity implements Callback,IActivityTitle
 {
     protected BaseActivity mActivity;
     protected SharedPreferences mPreferences;
     private FrameLayout mFrameContainer;
     protected Toolbar mToolbar;
+    private SpotsDialog mSpotsDialog;
     /**
      * 中间的标题
      */
@@ -53,7 +56,9 @@ public class BaseActivity extends AppCompatActivity implements Callback
     {
         super.onCreate(savedInstanceState);
         mActivity = this;
-
+        mSpotsDialog = new SpotsDialog(mActivity);
+        mSpotsDialog.setCanceledOnTouchOutside(false);
+        mSpotsDialog.setCancelable(true);
         mPreferences = getSharedPreferences(getPackageName(), Context.MODE_PRIVATE);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         int statusColor = getResources().getColor(R.color.color_indigo_colorPrimaryDark);
@@ -62,7 +67,24 @@ public class BaseActivity extends AppCompatActivity implements Callback
         {
             ViewUtils.alphaStatusBarAndNavBar(mActivity, statusColor, navColor);
         }
+    }
+    protected  void showProgressDialoghint()
+    {
+        mSpotsDialog.show();
+    }
+    protected  void hideProgressDialogHint()
+    {
+        if (mSpotsDialog.isShowing())
+        {
+            mSpotsDialog.dismiss();
+        }
+    }
 
+    @Override
+    protected void onPause()
+    {
+        super.onPause();
+        mSpotsDialog.dismiss();
     }
 
     @Override
@@ -107,6 +129,7 @@ public class BaseActivity extends AppCompatActivity implements Callback
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setHomeButtonEnabled(true);
         }
+        setTitleText(getActivityTitle());
     }
 
     @Override
@@ -122,7 +145,7 @@ public class BaseActivity extends AppCompatActivity implements Callback
 
     public void setTitleText(CharSequence title)
     {
-        mTvTitle.setText(title);
+            mTvTitle.setText(title);
     }
 
     protected void setMenuResId(int resId)

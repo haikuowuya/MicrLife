@@ -15,7 +15,7 @@ import com.haikuowuya.microlife.adapter.city.CityAdapter;
 import com.haikuowuya.microlife.adapter.city.InitialHeaderAdapter;
 import com.haikuowuya.microlife.base.BaseActivity;
 
-import com.haikuowuya.microlife.model.CityItem;
+import com.haikuowuya.microlife.mvp.model.CityItem;
 import com.haikuowuya.microlife.mvp.presenter.CityPresenter;
 import com.haikuowuya.microlife.mvp.presenter.LocationPresenter;
 import com.haikuowuya.microlife.mvp.presenter.impl.CityPresenterImpl;
@@ -39,7 +39,6 @@ public class CityActivity extends BaseActivity implements CityView, LocationView
     private static final String TITLE = "城市选择";
     private RecyclerView mRecyclerView;
 
-    private SpotsDialog mSpotsDialog;
     private CityPresenter mCityPresenter;
     private LocationPresenter mLocationPresenter;
     private FastScrollerLinearLayout mFastScroller;
@@ -57,7 +56,7 @@ public class CityActivity extends BaseActivity implements CityView, LocationView
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_city);   //TODO
         initView();
-        setTitleText(TITLE);
+
         setMenuResId(R.drawable.location_selector);
         fillData();
         setListener();
@@ -86,7 +85,7 @@ public class CityActivity extends BaseActivity implements CityView, LocationView
         mRecyclerView = (RecyclerView) findViewById(R.id.rv_recyclerview);
 //        mRecyclerView.setLayoutManager(new LinearLayoutManager(mActivity, LinearLayoutManager.VERTICAL, false));
         mRecyclerView.setLayoutManager(new ScrollingLinearLayoutManager(mActivity, LinearLayoutManager.VERTICAL, false, DURATION));
-        mSpotsDialog = new SpotsDialog(mActivity, R.style.Custom);
+
         mFastScroller = (FastScrollerLinearLayout) findViewById(R.id.fast_scroller);
         mFastScroller.setRecyclerView(mRecyclerView);
     }
@@ -94,16 +93,13 @@ public class CityActivity extends BaseActivity implements CityView, LocationView
     @Override
     public void showProgressDialog()
     {
-        mSpotsDialog.show();
+       showProgressDialoghint();
     }
 
     @Override
     public void hidProgressDialog()
     {
-        if (mSpotsDialog.isShowing())
-        {
-            mSpotsDialog.dismiss();
-        }
+        hideProgressDialogHint();
     }
 
     @Override
@@ -131,7 +127,7 @@ public class CityActivity extends BaseActivity implements CityView, LocationView
     protected void onPause()
     {
         super.onPause();
-        mSpotsDialog.dismiss();
+
     }
 
     @Override
@@ -164,6 +160,12 @@ public class CityActivity extends BaseActivity implements CityView, LocationView
         {
             mLocationPresenter.stopLocation();
         }
+    }
+
+    @Override
+    public CharSequence getActivityTitle()
+    {
+        return TITLE;
     }
 
     private class OnMenuClickListener implements View.OnClickListener

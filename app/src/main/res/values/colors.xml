@@ -1,7 +1,7 @@
 <resources>
 
     <color name="color_indigo_colorPrimaryDark">#FFFF5F00</color>
-    <color name="color_indigo_colorPrimary">#FFFF7800</color>
+    <color name="color_indigo_colorPrimary">@color/color_indigo_colorPrimaryDark</color>   <!--#FFFF7800-->
     <color name="color_indigo_nav_color">#FFFFB000</color>
     <color name="color_center_title_text_color">#FFFFFFFF</color>
     <color name="color_list_item_pressed_color">#FFFFDF00</color>

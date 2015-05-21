@@ -11,7 +11,7 @@ import android.widget.TextView;
 import com.haikuowuya.microlife.CityActivity;
 import com.haikuowuya.microlife.Constants;
 import com.haikuowuya.microlife.R;
-import com.haikuowuya.microlife.model.CityItem;
+import com.haikuowuya.microlife.mvp.model.CityItem;
 
 import java.util.List;
 

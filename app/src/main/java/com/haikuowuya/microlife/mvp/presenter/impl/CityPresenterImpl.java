@@ -4,14 +4,12 @@ import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
 
-import com.haikuowuya.microlife.model.CityItem;
+import com.haikuowuya.microlife.mvp.model.CityItem;
 import com.haikuowuya.microlife.mvp.presenter.CityPresenter;
 import com.haikuowuya.microlife.mvp.view.CityView;
 import com.haikuowuya.microlife.util.CityUtils;
 
 import java.util.List;
-
-import javax.xml.transform.Source;
 
 import io.realm.Realm;
 

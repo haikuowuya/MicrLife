@@ -27,6 +27,11 @@ public class OkHttpUtils
     public static void asyncExecute(Request request, Callback callback)
     {
         sOkHttpClient.newCall(request).enqueue(callback);
+
+    }
+    public static  void cancleRequest(Request request)
+    {
+        sOkHttpClient.cancel(request);
     }
     public static void asynExecute(Request request)
     {

@@ -85,7 +85,6 @@
             android:layout_height="48dp"
             android:layout_below="@+id/tv_joke"
             android:layout_centerHorizontal="true"
-
             android:layout_marginTop="1dp"
             android:indeterminateDrawable="@drawable/drawable_loading"
             android:padding="12dp"

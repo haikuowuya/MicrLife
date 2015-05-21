@@ -10,6 +10,7 @@ public class ToastUtils
     /**显示自定义的Toast*/
     public static void showCrouton(Activity activity, CharSequence text, ViewGroup viewGroup )
     {
+
         //View view = LayoutInflater.from(mHostActivity).inflate(R.layout.layout_crouton_custom_view, null);
         Crouton crouton = Crouton.makeText(activity, text, Style.ALERT, viewGroup);
         crouton.show();

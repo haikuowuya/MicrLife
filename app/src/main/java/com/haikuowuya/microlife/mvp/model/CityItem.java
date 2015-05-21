@@ -1,4 +1,4 @@
-package com.haikuowuya.microlife.model;
+package com.haikuowuya.microlife.mvp.model;
 
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;

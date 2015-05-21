@@ -20,8 +20,6 @@ public class WelcomeActivity extends BaseActivity
 {
     public static  final String PREF_FIRST_ENTER="first_enter";
     private VerticalViewPager mVerticalViewPager;
-
-
     public static void  actionWelcome(Activity activity)
     {
         Intent intent = new Intent(activity,WelcomeActivity.class);
@@ -103,5 +101,11 @@ public class WelcomeActivity extends BaseActivity
             }
         };
         return pagerAdapter;
+    }
+
+    @Override
+    public CharSequence getActivityTitle()
+    {
+        return null;
     }
 }

@@ -75,7 +75,7 @@ public class HomeFragment extends BaseFragment
             @Override
             public boolean checkCanDoRefresh(PtrFrameLayout ptrFrameLayout, View view, View view1)
             {
-                return true;
+                return false;
             }
 
             @Override
