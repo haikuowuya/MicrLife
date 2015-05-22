@@ -1,13 +1,17 @@
 package com.haikuowuya.microlife.mvp.model;
 
+import java.io.Serializable;
+
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 
 /**
  * Created by raiyi-suzhou on 2015/5/14 0014.
  */
-public class CityItem extends RealmObject
+public class CityItem extends RealmObject   implements Serializable
 {
+    public static final String FIELD_S_NAME="sName";
+    public static final String FIELD_IS_CURRENT_CITY="isCurrentCity";
     @PrimaryKey
     private int id_id;
     private int allletorder;
@@ -23,6 +27,7 @@ public class CityItem extends RealmObject
     private String weatherId;
     private String wlId;
     private String key;
+    private boolean isCurrentCity;
 
     public int getId_id()
     {
@@ -164,5 +169,15 @@ public class CityItem extends RealmObject
     public void setKey(String key)
     {
         this.key = key;
+    }
+
+    public boolean isCurrentCity()
+    {
+        return isCurrentCity;
+    }
+
+    public void setIsCurrentCity(boolean isCurrentCity)
+    {
+        this.isCurrentCity = isCurrentCity;
     }
 }

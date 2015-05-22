@@ -9,6 +9,7 @@ import android.view.View;
 
 import com.haikuowuya.microlife.adapter.weather.WeatherPagerAdapter;
 import com.haikuowuya.microlife.base.BaseActivity;
+import com.haikuowuya.microlife.mvp.model.CityItem;
 import com.haikuowuya.microlife.mvp.model.Weather;
 import com.haikuowuya.microlife.mvp.presenter.WeatherPresenter;
 import com.haikuowuya.microlife.mvp.presenter.impl.WeatherPresenterImpl;
@@ -20,6 +21,8 @@ import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
 
 import java.io.IOException;
+
+import io.realm.Realm;
 
 /**
  * Created by raiyi-suzhou on 2015/5/18 0018.
@@ -35,7 +38,7 @@ public class WeatherActivity extends BaseActivity implements WeatherView
     private WeatherPresenter mWeatherPresenter;
     private RecyclerView mRecyclerView;
 
-    private TabViewPagerIndicator mTabViewPagerIndicator ;
+    private TabViewPagerIndicator mTabViewPagerIndicator;
     private Weather mWeather;
 
     @Override
@@ -46,13 +49,14 @@ public class WeatherActivity extends BaseActivity implements WeatherView
         initView();
         setMenuResId(R.mipmap.ic_refresh);
         setListener();
-        mWeatherPresenter = new WeatherPresenterImpl(this);
+        mWeatherPresenter = new WeatherPresenterImpl(this, getCurrentCity().getWeatherId());
         initWeather();
     }
+
     private void initWeather()
     {
-        mWeather = WeatherUtils.parseWeatherJson(mPreferences.getString(Constants.PREF_WEATHER_JSON,""));
-        if(null != mWeather)
+        mWeather = WeatherUtils.parseWeatherJson(mPreferences.getString(Constants.PREF_WEATHER_JSON, ""));
+        if (null != mWeather && !isWeatherExpired())
         {
             onWeatherFinished(mWeather);
         }
@@ -61,6 +65,7 @@ public class WeatherActivity extends BaseActivity implements WeatherView
             mWeatherPresenter.doGetWeather();
         }
     }
+
     private void setListener()
     {
         onMenuClickListener(new View.OnClickListener()
@@ -94,13 +99,13 @@ public class WeatherActivity extends BaseActivity implements WeatherView
     {
         super.onResponse(response);
         hideProgressDialog();
-        if(response.isSuccessful())
+        if (response.isSuccessful())
         {
             String json = response.body().string();
-            if(!TextUtils.isEmpty(json))
+            if (!TextUtils.isEmpty(json))
             {
                 Weather weather = WeatherUtils.parseWeatherJson(json);
-                if(null != weather)
+                if (null != weather)
                 {
                     mPreferences.edit().putString(Constants.PREF_WEATHER_JSON, json).commit();
                     onWeatherFinished(weather);
@@ -112,7 +117,7 @@ public class WeatherActivity extends BaseActivity implements WeatherView
     @Override
     public CharSequence getActivityTitle()
     {
-        String city = mPreferences.getString(Constants.PREF_LOCATION_CITY, Constants.DEFAULT_CITY);
+        String city = getCurrentCity().getsName();
         if (city.contains(Constants.SHI) && city.substring(city.length() - 1).equals(Constants.SHI))
         {
             city = city.substring(0, city.length() - 1);
@@ -129,13 +134,14 @@ public class WeatherActivity extends BaseActivity implements WeatherView
     @Override
     public void hideProgressDialog()
     {
-         hideProgressDialogHint();
+        hideProgressDialogHint();
     }
 
     @Override
-    public void onWeatherFinished(final Weather weather )
+    public void onWeatherFinished(final Weather weather)
     {
         mWeather = weather;
+        mPreferences.edit().putLong(Constants.PREF_WEATHER_UPDATE_TIME, 0).commit();
         runOnUiThread(new Runnable()
         {
             public void run()
@@ -151,5 +157,20 @@ public class WeatherActivity extends BaseActivity implements WeatherView
     public Weather getWeather()
     {
         return mWeather;
+    }
+
+    /**
+     * 天气是否已经过期
+     * @return true 过期  ; false 没有过期
+     */
+    private boolean isWeatherExpired()
+    {
+        boolean flag = true;
+        long currentTime = System.currentTimeMillis();
+        long lastUpdateTime = mPreferences.getLong(Constants.PREF_WEATHER_UPDATE_TIME, 0);
+
+        flag =  Math.abs(currentTime - lastUpdateTime) >8*60*1000;  // 8分钟一更新
+
+        return flag;
     }
 }

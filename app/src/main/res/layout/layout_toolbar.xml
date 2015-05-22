@@ -16,7 +16,6 @@
         android:layout_height="match_parent">
 
 
-
         <TextView
             android:id="@+id/tv_center_title"
             style="@style/Click.TextView.Color.Style"
@@ -24,9 +23,11 @@
             android:layout_height="match_parent"
             android:layout_centerHorizontal="true"
             android:gravity="center"
-            android:paddingRight="48dp"
+            android:maxLength="8"
             android:minWidth="72dp"
+            android:paddingRight="48dp"
 
+            android:singleLine="true"
             android:textSize="18sp"
             app:text="苏州"/>
 

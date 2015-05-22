@@ -8,6 +8,7 @@ public interface  CityView
     public void showProgressDialog();
     public void hidProgressDialog();
     public void onInsertSuccess();
+    public void showCityChangedDialog(String locationCityName, String currentCityName);
 
 
 }

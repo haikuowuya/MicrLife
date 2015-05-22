@@ -1,6 +1,8 @@
 package com.haikuowuya.microlife;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -22,12 +24,15 @@ import com.haikuowuya.microlife.mvp.presenter.impl.CityPresenterImpl;
 import com.haikuowuya.microlife.mvp.presenter.impl.LocationPresenterImpl;
 import com.haikuowuya.microlife.mvp.view.CityView;
 import com.haikuowuya.microlife.mvp.view.LocationView;
+import com.haikuowuya.microlife.util.ACache;
+import com.haikuowuya.microlife.util.CityUtils;
 import com.haikuowuya.microlife.util.ToastUtils;
 import com.haikuowuya.microlife.view.FastScrollerLinearLayout;
 import com.haikuowuya.microlife.view.common.ScrollingLinearLayoutManager;
 
 import dmax.dialog.SpotsDialog;
 import io.realm.Realm;
+import io.realm.RealmQuery;
 import io.realm.RealmResults;
 
 /**
@@ -42,7 +47,6 @@ public class CityActivity extends BaseActivity implements CityView, LocationView
     private CityPresenter mCityPresenter;
     private LocationPresenter mLocationPresenter;
     private FastScrollerLinearLayout mFastScroller;
-
 
     public static void actionCity(Activity activity)
     {
@@ -61,6 +65,7 @@ public class CityActivity extends BaseActivity implements CityView, LocationView
         fillData();
         setListener();
     }
+
 
     private void fillData()
     {
@@ -93,7 +98,7 @@ public class CityActivity extends BaseActivity implements CityView, LocationView
     @Override
     public void showProgressDialog()
     {
-       showProgressDialoghint();
+        showProgressDialoghint();
     }
 
     @Override
@@ -124,6 +129,32 @@ public class CityActivity extends BaseActivity implements CityView, LocationView
     }
 
     @Override
+    public void showCityChangedDialog(final String locationCityName, final String currentCityName)
+    {
+        AlertDialog dialog = new AlertDialog.Builder(mActivity).
+                setTitle("提示")
+                .setMessage("定位的城市和当前选择的城市不一致，是否要切换到定位的城市")
+                .setPositiveButton("确定", new DialogInterface.OnClickListener()
+                {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which)
+                    {
+                             CityUtils.saveSelectedCity(mActivity, locationCityName);
+                             mRecyclerView.getAdapter().notifyDataSetChanged();
+                             dialog.dismiss();
+                    }
+                })
+                .setNegativeButton("取消", new DialogInterface.OnClickListener()
+                {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which)
+                    {
+                        dialog.dismiss();
+                    }
+                }).show();
+    }
+
+    @Override
     protected void onPause()
     {
         super.onPause();
@@ -146,8 +177,25 @@ public class CityActivity extends BaseActivity implements CityView, LocationView
         {
 //            Toast.makeText(mActivity, bdLocation.getAddrStr(), Toast.LENGTH_SHORT).show();
             ToastUtils.showCrouton(mActivity, bdLocation.getAddrStr(), getContentViewGroup());
-            mPreferences.edit().putString(Constants.PREF_LOCATION_CITY, bdLocation.getCity()).commit();
-            mRecyclerView.getAdapter().notifyDataSetChanged();
+            String city = bdLocation.getCity();
+            if (city.contains(Constants.SHI) && city.substring(city.length() - 1).equals(Constants.SHI))
+            {
+                city = city.substring(0, city.length() - 1);
+            }
+//            RealmQuery<CityItem> query = Realm.getInstance(mActivity).where(CityItem.class).equalTo(CityItem.FIELD_S_NAME, city);
+//            if (null != query)
+//            {
+//                CityItem cityItem = query.findFirst();
+//                System.out.println("定位城市  = " + cityItem.getsName());
+//                ACache aCache = ACache.get(mActivity);
+//                aCache.put(Constants.PREF_SELECTED_CITY, cityItem);
+//            }
+            mPreferences.edit().putString(Constants.PREF_LOCATION_CITY, city).commit();
+            CityItem currentCity = Realm.getInstance(mActivity).where(CityItem.class).equalTo(CityItem.FIELD_IS_CURRENT_CITY, true).findFirst();
+            if(!currentCity.getsName().equals(city))
+            {
+                showCityChangedDialog(city, currentCity.getsName());
+            }
         }
 
     }

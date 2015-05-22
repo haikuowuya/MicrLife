@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import com.haikuowuya.microlife.MainActivity;
 import com.haikuowuya.microlife.R;
 import com.haikuowuya.microlife.WeatherActivity;
 import com.haikuowuya.microlife.base.BaseAdapter;
@@ -97,6 +98,7 @@ public class MenuFragment extends BaseFragment
         public void onItemClick(AdapterView<?> parent, View view, int position, long id)
         {
             WeatherActivity.actionWeather(mActivity);
+
         }
     }
 }

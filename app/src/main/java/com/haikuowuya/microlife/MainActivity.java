@@ -3,6 +3,7 @@ package com.haikuowuya.microlife;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.PersistableBundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -104,6 +105,12 @@ public class MainActivity extends BaseActivity
     }
 
     @Override
+    protected void onResume()
+    {
+        super.onResume();
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item)
     {
         switch (item.getItemId())
@@ -127,15 +134,22 @@ public class MainActivity extends BaseActivity
         if(mDrawerLayout.isDrawerOpen(Gravity.START))
         {
             mDrawerLayout.closeDrawer(Gravity.START);
-            return;
         }
-        super.onBackPressed();
+        else
+        {
+            super.onBackPressed();
+        }
     }
 
     @Override
     public CharSequence getActivityTitle()
     {
-        return DEFAULT_CITY_TITLE;
+        String title = DEFAULT_CITY_TITLE;
+        if(getCurrentCity() != null)
+        {
+            title = getCurrentCity().getsName();
+        }
+        return   title;
     }
 
     private class OnClickListenerImpl implements View.OnClickListener

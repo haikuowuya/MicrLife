@@ -1,56 +1,67 @@
 <LinearLayout
-    android:id="@+id/drawer"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:divider="#FFFF0000"
-    android:dividerPadding="2dp"
-    android:showDividers="end"
-    android:layout_height="48dp">
+    android:layout_height="49dp"
+    android:orientation="vertical"
+    >
 
-
-    <TextView
-        android:id="@+id/tv_text"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:background="@drawable/list_item_selector"
-        android:clickable="true"
-        android:gravity="center_vertical"
-        android:padding="8dp"
-        android:textColor="@drawable/list_item_text_color_selector"/>
-
-    <FrameLayout
-        android:id="@+id/frame_location_container"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_gravity="center_horizontal"
-        android:minWidth="64dp">
-
+        android:layout_height="48dp"
+        android:divider="#FFFF0000"
+        android:dividerPadding="2dp"
+        android:showDividers="end">
         <TextView
-            android:id="@+id/tv_location"
-            android:layout_width="wrap_content"
+            android:id="@+id/tv_text"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-
+            android:layout_weight="1"
             android:background="@drawable/list_item_selector"
-            android:gravity="center"
-            android:minWidth="64dp"
-            android:text="定位"
+            android:clickable="true"
+            android:gravity="center_vertical"
+            android:padding="8dp"
             android:textColor="@drawable/list_item_text_color_selector"/>
 
-        <ProgressBar
-            android:id="@+id/pb_progress"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:layout_gravity="center"
-            android:padding="4dp"
-            android:visibility="gone"/>
-        <ImageView
-            android:id="@+id/iv_image"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:layout_gravity="center"
-            android:padding="4dp"
-            android:visibility="gone"/>
-    </FrameLayout>
+        <FrameLayout
+            android:id="@+id/frame_location_container"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:minWidth="64dp">
+
+            <TextView
+                android:id="@+id/tv_location"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+
+                android:background="@drawable/list_item_selector"
+                android:gravity="center"
+                android:minWidth="64dp"
+                android:text="定位"
+                android:textColor="@drawable/list_item_text_color_selector"/>
+
+            <ProgressBar
+                android:id="@+id/pb_progress"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_gravity="center"
+                android:padding="4dp"
+                android:visibility="gone"/>
+
+            <ImageView
+                android:id="@+id/iv_image"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_gravity="center"
+                android:padding="4dp"
+                android:visibility="gone"/>
+        </FrameLayout>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:alpha="0.6"
+        android:background="@color/color_indigo_nav_color"/>
 </LinearLayout>
 

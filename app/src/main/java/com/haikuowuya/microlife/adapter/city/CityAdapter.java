@@ -12,8 +12,15 @@ import com.haikuowuya.microlife.CityActivity;
 import com.haikuowuya.microlife.Constants;
 import com.haikuowuya.microlife.R;
 import com.haikuowuya.microlife.mvp.model.CityItem;
+import com.haikuowuya.microlife.util.ACache;
+import com.haikuowuya.microlife.util.CityUtils;
 
+import java.util.LinkedList;
 import java.util.List;
+
+import io.realm.Realm;
+import io.realm.RealmQuery;
+import io.realm.RealmResults;
 
 /**
  * Created by raiyi-suzhou on 2015/5/14 0014.
@@ -24,13 +31,17 @@ public class CityAdapter extends RecyclerView.Adapter<CityAdapter.ViewHolder>
     private static final int VIEW_TYPE_DEFAULT = 2;
     private List<CityItem> mData;
     private CityActivity mActivity;
+    private CityAdapterDataObserver mCityAdapterDataObserVer;
+    private CityItem mSelectedCityItem;
 
     public CityAdapter(CityActivity activity, List<CityItem> data)
     {
         mActivity = activity;
         mData = data;
         setHasStableIds(true);
-
+        mSelectedCityItem =  mActivity.getCurrentCity();
+        mCityAdapterDataObserVer = new CityAdapterDataObserver(mData, this);
+        registerAdapterDataObserver(mCityAdapterDataObserVer);
     }
 
     @Override
@@ -46,8 +57,21 @@ public class CityAdapter extends RecyclerView.Adapter<CityAdapter.ViewHolder>
     {
         viewHolder.frameLocationContainer.setVisibility(View.GONE);
         viewHolder.textView.setText(mData.get(i).getsName());
+
+        if( mData.get(i).isCurrentCity())
+        {
+            viewHolder.textView.setCompoundDrawablesWithIntrinsicBounds(0,0,R.mipmap.ic_city_selected, 0);
+        }
+        else
+        {
+            viewHolder.textView.setCompoundDrawablesWithIntrinsicBounds(0,0,0, 0);
+        }
         if (getItemViewType(i) == VIEW_TYPE_LOCATION)
         {
+            if(null != mSelectedCityItem && getLocationCity().equals( mSelectedCityItem.getsName()))
+            {
+                viewHolder.textView.setCompoundDrawablesWithIntrinsicBounds(0,0,R.mipmap.ic_city_selected, 0);
+            }
             viewHolder.textView.setText(getLocationCity());
             viewHolder.frameLocationContainer.setVisibility(View.VISIBLE);
             viewHolder.tvLocation.setOnClickListener(new View.OnClickListener()
@@ -63,6 +87,7 @@ public class CityAdapter extends RecyclerView.Adapter<CityAdapter.ViewHolder>
         }
         viewHolder.frameLocationContainer.setVisibility(View.GONE);
 
+        viewHolder.textView.setOnClickListener(new OnClickListenerImpl());
     }
 
     @Override
@@ -100,6 +125,22 @@ public class CityAdapter extends RecyclerView.Adapter<CityAdapter.ViewHolder>
         }
         return text;
     }
+    private class OnClickListenerImpl implements View.OnClickListener
+    {
+        @Override
+        public void onClick(View v)
+        {
+            TextView textview = (TextView) v;
+            String text = textview.getText().toString();
+            if (!(null != mSelectedCityItem && mSelectedCityItem.getsName().equals(text)))
+            {
+                mSelectedCityItem = CityUtils.saveSelectedCity(mActivity, text);
+                notifyDataSetChanged();
+            }
+        }
+    }
+
+
 
     public static class ViewHolder extends RecyclerView.ViewHolder
     {

@@ -3,6 +3,8 @@ package com.haikuowuya.microlife.util;
 import android.content.Context;
 import android.text.TextUtils;
 
+import com.haikuowuya.microlife.Constants;
+import com.haikuowuya.microlife.base.BaseActivity;
 import com.haikuowuya.microlife.mvp.model.CityItem;
 
 import org.json.JSONArray;
@@ -11,11 +13,17 @@ import org.json.JSONObject;
 
 import java.util.LinkedList;
 
+import io.realm.Realm;
+import io.realm.RealmQuery;
+import io.realm.RealmResults;
+
 /**
  * Created by raiyi-suzhou on 2015/5/14 0014.
  */
 public class CityUtils
 {
+    private static final String BO_ZHOU_CITY="亳州" ;
+    private static final int BO_ZHOU_ID=11260;
     private static final String TAG_CITY_SORT = "citySort";
     private static final String TAG_CITY_LIST = "cityList";
     private static final String TAG_KEY = "key";
@@ -75,6 +83,10 @@ public class CityUtils
                                     lngLat = cityJsonObject.optString(TAG_LNG_LAT, DEFAULT_LNG_LAT);
                                     weatherId = cityJsonObject.optString(TAG_WEATHER_ID);
                                     wlId = cityJsonObject.optString(TAG_WL_ID);
+                                    if(BO_ZHOU_ID == id)
+                                    {
+                                        sName = BO_ZHOU_CITY;
+                                    }
                                     CityItem cityItem = new CityItem();
                                     cityItem.setKey(key);
                                     cityItem.setsName(sName);
@@ -90,6 +102,7 @@ public class CityUtils
                                     cityItem.setWeatherId(weatherId);
                                     cityItem.setWlId(wlId);
                                     cityItem.setId_id(items.size());
+                                    cityItem.setIsCurrentCity(Constants.DEFAULT_CITY.equals(sName));
                                     String city = "城市名称 = " + cityItem.getsName() + " 关键词 = " + cityItem.getKey()
                                             +" 城市地区代码 = "+areaCode +" 城市天气代码 = "+weatherId;
                                   //  System.out.println("city = " + city);
@@ -122,4 +135,56 @@ public class CityUtils
         cityItem.setsName(locationCity);
         return cityItem;
     }
+
+     public static CityItem genDefaultCity()
+     {
+         CityItem cityItem = new CityItem();
+         return  cityItem;
+
+     }
+    private static  void clearCurrentCityFlag(BaseActivity activity)
+    {
+        Realm realm =  Realm.getInstance(activity) ;
+        RealmQuery<CityItem> query =realm.where(CityItem.class).equalTo(CityItem.FIELD_IS_CURRENT_CITY, true);
+        if(query != null)
+        {
+            RealmResults<CityItem> result = query.findAll();
+            for(int i = 0;i < result.size();i++)
+            {
+                realm.beginTransaction();;
+                CityItem cityItem = result.get(i);
+                cityItem.setIsCurrentCity(false);
+                realm.commitTransaction();;
+            }
+
+        }
+
+    }
+
+    public  static  CityItem  saveSelectedCity(BaseActivity activity ,String city)
+    {
+        clearCurrentCityFlag(activity);
+        CityItem  selectedCityItem = null;
+        Realm realm =  Realm.getInstance(activity) ;
+        RealmQuery<CityItem> query =realm.where(CityItem.class).equalTo(CityItem.FIELD_S_NAME, city);
+        if (null != query)
+        {
+            RealmResults<CityItem> result = query.findAll();
+            CityItem cityItem = result.get(0);
+            selectedCityItem = cityItem;
+            System.out.println("选择的城市  = " + cityItem.getsName());
+            activity.getPreferences().edit().remove(Constants.PREF_WEATHER_JSON).commit();
+//                ACache aCache = ACache.get(mActivity);
+//                aCache.put(Constants.PREF_SELECTED_CITY, cityItem);
+            for(int i = 0;i < result.size();i++)
+            {
+                realm.beginTransaction();;
+                CityItem item = result.get(i);
+                item.setIsCurrentCity(true);
+                realm.commitTransaction();;
+            }
+        }
+        return  selectedCityItem;
+    }
+
 }

@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.haikuowuya.microlife.WebViewActivity;
 import com.haikuowuya.microlife.model.HomeItem;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.FailReason;
@@ -45,7 +46,7 @@ public class HomePagerAdapter extends PagerAdapter
     }
 
     @Override
-    public Object instantiateItem(ViewGroup container, int position)
+    public Object instantiateItem(ViewGroup container, final int position)
     {
 
         final ImageView imageView = new ImageView(mContext);
@@ -77,6 +78,14 @@ public class HomePagerAdapter extends PagerAdapter
             public void onLoadingCancelled(String imageUri, View view)
             {
 
+            }
+        });
+        imageView.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                WebViewActivity.actionWebView(mContext, mData.get(position).url);
             }
         });
         return imageView;

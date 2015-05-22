@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import com.haikuowuya.microlife.R;
 import com.haikuowuya.microlife.WelcomeActivity;
+import com.haikuowuya.microlife.mvp.model.CityItem;
 import com.haikuowuya.microlife.util.ViewUtils;
 import com.haikuowuya.microlife.view.common.DrawerArrowDrawable;
 import com.squareup.okhttp.Callback;
@@ -26,6 +27,7 @@ import com.squareup.okhttp.Response;
 import java.io.IOException;
 
 import dmax.dialog.SpotsDialog;
+import io.realm.Realm;
 
 /**
  * Created by raiyi-suzhou on 2015/5/5 0005.
@@ -37,6 +39,7 @@ public abstract class BaseActivity extends AppCompatActivity implements Callback
     private FrameLayout mFrameContainer;
     protected Toolbar mToolbar;
     private SpotsDialog mSpotsDialog;
+    private CityItem mCurrentCity;
     /**
      * 中间的标题
      */
@@ -67,6 +70,15 @@ public abstract class BaseActivity extends AppCompatActivity implements Callback
         {
             ViewUtils.alphaStatusBarAndNavBar(mActivity, statusColor, navColor);
         }
+     mCurrentCity =  Realm.getInstance(mActivity).where(CityItem.class).equalTo(CityItem.FIELD_IS_CURRENT_CITY, true).findFirst();
+    }
+    public CityItem getCurrentCity()
+    {
+        return  mCurrentCity;
+    }
+    public void setCurrentCity(CityItem cityItem)
+    {
+        mCurrentCity = cityItem;
     }
     protected  void showProgressDialoghint()
     {
@@ -85,6 +97,14 @@ public abstract class BaseActivity extends AppCompatActivity implements Callback
     {
         super.onPause();
         mSpotsDialog.dismiss();
+    }
+
+    @Override
+    protected void onResume()
+    {
+        super.onResume();
+        mCurrentCity =  Realm.getInstance(mActivity).where(CityItem.class).equalTo(CityItem.FIELD_IS_CURRENT_CITY, true).findFirst();
+        setTitleText(getActivityTitle());
     }
 
     @Override
@@ -129,7 +149,7 @@ public abstract class BaseActivity extends AppCompatActivity implements Callback
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setHomeButtonEnabled(true);
         }
-        setTitleText(getActivityTitle());
+
     }
 
     @Override
@@ -145,7 +165,10 @@ public abstract class BaseActivity extends AppCompatActivity implements Callback
 
     public void setTitleText(CharSequence title)
     {
+        if(null != mTvTitle)
+        {
             mTvTitle.setText(title);
+        }
     }
 
     protected void setMenuResId(int resId)
