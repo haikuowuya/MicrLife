@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="3" xmlns:ns1="urn:oasis:names:tc:xliff:document:1.2"><dataSet config="22.1.1"><source path="D:\libo\android_studio_workspace\MicroLife\library\build\intermediates\exploded-aar\com.android.support\support-v4\22.1.1\res"/></dataSet><dataSet config="main"><source path="D:\libo\android_studio_workspace\MicroLife\library\src\main\res"><file name="dl__ic_action_cancel" path="D:\libo\android_studio_workspace\MicroLife\library\src\main\res\drawable-hdpi\dl__ic_action_cancel.png" qualifiers="hdpi" type="drawable"/><file name="dl__ic_action_cancel" path="D:\libo\android_studio_workspace\MicroLife\library\src\main\res\drawable-mdpi\dl__ic_action_cancel.png" qualifiers="mdpi" type="drawable"/><file name="dl__ic_action_cancel" path="D:\libo\android_studio_workspace\MicroLife\library\src\main\res\drawable-xhdpi\dl__ic_action_cancel.png" qualifiers="xhdpi" type="drawable"/><file path="D:\libo\android_studio_workspace\MicroLife\library\src\main\res\values\plurals-download.xml" qualifiers=""><plurals name="dl__duration_minutes">
+    <item quantity="one">1 minute</item>
+    <item quantity="other">
+      <ns1:g id="count">%d</ns1:g>
+      minutes
+    </item>
+  </plurals><plurals name="dl__duration_hours">
+    <item quantity="one">1 hour</item>
+    <item quantity="other">
+      <ns1:g id="count">%d</ns1:g>
+      hours
+    </item>
+  </plurals><plurals name="dl__notif_summary_active">
+    <item quantity="one">1 file downloading</item>
+    <item quantity="other">
+      <ns1:g id="number">%d</ns1:g>
+      files downloading
+    </item>
+  </plurals><plurals name="dl__duration_seconds">
+    <item quantity="one">1 second</item>
+    <item quantity="other">
+      <ns1:g id="count">%d</ns1:g>
+      seconds
+    </item>
+  </plurals><plurals name="dl__notif_summary_waiting">
+    <item quantity="one">1 file waiting</item>
+    <item quantity="other">
+      <ns1:g id="number">%d</ns1:g>
+      files waiting
+    </item>
+  </plurals></file></source><source path="D:\libo\android_studio_workspace\MicroLife\library\build\generated\res\rs\debug"/><source path="D:\libo\android_studio_workspace\MicroLife\library\build\generated\res\generated\debug"/></dataSet><dataSet config="debug"><source path="D:\libo\android_studio_workspace\MicroLife\library\src\debug\res"/></dataSet><mergedItems/></merger>

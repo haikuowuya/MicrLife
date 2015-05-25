@@ -88,6 +88,10 @@ public abstract class BaseAdapter<T> extends android.widget.BaseAdapter
 	{
 		 getView(convertView, viewId).setOnClickListener(listener);
 	}
+	public void setConvertViewOnClick(View convertView, View.OnClickListener listener)
+	{
+		convertView.setOnClickListener(listener);
+	}
 
 	public void setCurrentProgress(View convertView, int viewId, int progress)
 	{
