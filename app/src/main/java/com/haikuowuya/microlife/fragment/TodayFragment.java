@@ -1,5 +1,6 @@
 package com.haikuowuya.microlife.fragment;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -22,6 +23,7 @@ public class TodayFragment extends BaseFragment
 {
 	private static final String DU = "°C";
 	private static final String ZHUAN = "转";
+	private TextView mTvPmInfo;
 
 	public static TodayFragment newInstance()
 	{
@@ -30,10 +32,10 @@ public class TodayFragment extends BaseFragment
 	}
 
 	private WeatherActivity mWeatherActivity;
-
 	private TextView mTvUpdateTime;
 	private TextView mTvWeather;
 	private TextView mTvTemperature;
+	private TextView mTvPm;
 	private View mHeaderView;
 	private ListView mListView;
 
@@ -53,6 +55,8 @@ public class TodayFragment extends BaseFragment
 		mTvTemperature = (TextView) mHeaderView.findViewById(R.id.tv_temperature);
 		mTvWeather = (TextView) mHeaderView.findViewById(R.id.tv_weather);
 		mTvUpdateTime = (TextView) mHeaderView.findViewById(R.id.tv_update_time);
+		mTvPm = (TextView) mHeaderView.findViewById(R.id.tv_pm);
+		mTvPmInfo = (TextView) mHeaderView.findViewById(R.id.tv_pm_info);
 
 	}
 
@@ -66,17 +70,23 @@ public class TodayFragment extends BaseFragment
 		{
 			 Weather.WeatherItem weatherItem = mWeatherActivity.getWeather().weatherItems.get(0);
 			 Weather.RealtimeItem realtimeItem = mWeatherActivity.getWeather().realtimeItem;
+			Weather.Pm25 pmItem = mWeatherActivity.getWeather().pm25;
 			 mTvWeather.setText(realtimeItem.info);
 			 mTvTemperature.setText(realtimeItem.feelslike_c);
 			 mTvUpdateTime.setText("更新时间:"+ DateUtils.getUpdateTime(realtimeItem.dataUptime));
-
+			if(null != pmItem)
+			{
+				mTvPm.setText("PM值："+ pmItem.pm25);
+				mTvPmInfo.setText(pmItem.quality);
+				mTvPmInfo.setBackgroundColor(Color.parseColor(pmItem.color));
+			}
 			LinkedList<TextIconItem> data = new LinkedList<>();
 			data.add(new TextIconItem(R.mipmap.ic_sun_rise,"日出时间:"+weatherItem.dayItem.time));
 			data.add(new TextIconItem(R.mipmap.ic_sun_down,"日落时间:"+weatherItem.nightItem.time));
 			data.add(new TextIconItem(R.mipmap.ic_wind_direct,"当前风向:"+realtimeItem.direct));
 			data.add(new TextIconItem(R.mipmap.ic_wind_speed,"当前风速:"+ realtimeItem.windspeed+"km/h"));
 			data.add(new TextIconItem(R.mipmap.ic_feelslike_c,"体感温度:"+ realtimeItem.feelslike_c+DU));
-			data.add(new TextIconItem(R.mipmap.ic_humidity,"空气湿度:"+realtimeItem.humidity+"%"));
+			data.add(new TextIconItem(R.mipmap.ic_humidity, "空气湿度:" + realtimeItem.humidity + "%"));
 			mListView.addHeaderView(mHeaderView);
 			mListView.setAdapter(new TodayListAdapter(data));
 		}

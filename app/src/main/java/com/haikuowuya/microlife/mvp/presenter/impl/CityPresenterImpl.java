@@ -29,7 +29,7 @@ public class CityPresenterImpl implements CityPresenter
             switch (msg.what)
             {
                 case What_INSERT_SUCCESS:
-                    mCityView.hidProgressDialog();
+                    mCityView.hideProgressDialog();
                     mCityView.onInsertSuccess();
                     break;
             }

@@ -1,5 +1,7 @@
 package com.haikuowuya.microlife.mvp.presenter.impl;
 
+import android.webkit.URLUtil;
+
 import com.haikuowuya.microlife.WeatherActivity;
 import com.haikuowuya.microlife.mvp.model.Weather;
 import com.haikuowuya.microlife.mvp.presenter.WeatherPresenter;
@@ -38,6 +40,7 @@ public class WeatherPresenterImpl implements WeatherPresenter
             @Override
             public void onFailure(Request request, IOException e)
             {
+                ((Callback) mWeatherView).onFailure(request, e);
             }
 
             @Override
@@ -59,7 +62,10 @@ public class WeatherPresenterImpl implements WeatherPresenter
 
     private void  executeWeather(String jsonUrl )
     {
-        Request request = new Request.Builder().url(jsonUrl).build();
-        OkHttpUtils.asyncExecute(request, (Callback) mWeatherView) ;
+        if(URLUtil.isValidUrl(jsonUrl))
+        {
+            Request request = new Request.Builder().url(jsonUrl).build();
+            OkHttpUtils.asyncExecute(request, (Callback) mWeatherView);
+        }
     }
 }

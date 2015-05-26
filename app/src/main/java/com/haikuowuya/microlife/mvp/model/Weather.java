@@ -5,6 +5,11 @@ import java.util.LinkedList;
 
 public class Weather implements Serializable
 {
+	public static final String QING="晴";
+	public static final String DUYUN="多云"
+			;
+	public static final String YU="雨";
+	public static final String XUE="雪";
 	private static final long serialVersionUID = 1L;
 	public String province;
 	public String city;
@@ -14,6 +19,7 @@ public class Weather implements Serializable
 	public LinkedList<WeatherItem> weatherItems;
 	public RealtimeItem realtimeItem;
 	public LinkedList<HourItem> hourItems;
+	public Pm25 pm25;
 	public long weatherUpdateTime = 0;
 
 	@Override
@@ -122,6 +128,22 @@ public class Weather implements Serializable
 		}
 	}
 
+	public static class Pm25
+	{
+		public int so2;
+		public int o3;
+		public String co;
+		public int level;
+		public String color;
+		public int no2;
+		public int aqi;
+		public String quality;
+		public int pm10;
+		public int pm25;
+		public String advice;
+		public String chief;
+		public String upDateTime;
+	}
 	public static class LifeItem
 	{
 		/**空调指数*/

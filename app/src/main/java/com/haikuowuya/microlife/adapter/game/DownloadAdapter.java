@@ -7,9 +7,7 @@ import android.view.View;
 
 import com.haikuowuya.microlife.R;
 import com.haikuowuya.microlife.base.BaseAdapter;
-import com.novoda.downloadmanager.lib.DownloadManager;
-import com.novoda.downloadmanager.lib.Query;
-import com.novoda.downloadmanager.lib.Request;
+
 
 import java.util.List;
 
@@ -33,9 +31,12 @@ public class DownloadAdapter extends BaseAdapter<DownloadAdapter.DownloadItem>
         setTextViewText(convertView, R.id.tv_download_title, downloadItem.title + "  ::  " + downloadItem.fileName);
         setTextViewText(convertView, R.id.tv_download_status, downloadItem.getDownloadStatusText());
         setViewVisibility(convertView, R.id.pb_download_progress, View.GONE);
-        if (downloadItem.isBeginDownload)
+        setTextViewText(convertView, R.id.tv_progress, "");
+        if (downloadItem.isBeginDownload && downloadItem.progress > 0)
         {
             setViewVisibility(convertView, R.id.pb_download_progress, View.VISIBLE);
+            setCurrentProgress(convertView, R.id.pb_download_progress, downloadItem.progress);
+            setTextViewText(convertView, R.id.tv_progress, downloadItem.progress+"");
         }
     }
 
@@ -47,6 +48,7 @@ public class DownloadAdapter extends BaseAdapter<DownloadAdapter.DownloadItem>
         public String url;
         public String desc;
         public boolean isBeginDownload;
+        public int progress;
 
         public DownloadItem()
         {
@@ -54,30 +56,7 @@ public class DownloadAdapter extends BaseAdapter<DownloadAdapter.DownloadItem>
 
         public String getDownloadStatusText()
         {
-            if (downloadStatus == DownloadManager.STATUS_RUNNING)
-            {
-                return "Downloading";
-            }
-            else if (downloadStatus == DownloadManager.STATUS_SUCCESSFUL)
-            {
-                return "Complete";
-            }
-            else if (downloadStatus == DownloadManager.STATUS_FAILED)
-            {
-                return "Failed";
-            }
-            else if (downloadStatus == DownloadManager.STATUS_PENDING)
-            {
-                return "Queued";
-            }
-            else if (downloadStatus == DownloadManager.STATUS_PAUSED)
-            {
-                return "Paused";
-            }
-            else
-            {
                 return "WTH";
-            }
         }
     }
 }

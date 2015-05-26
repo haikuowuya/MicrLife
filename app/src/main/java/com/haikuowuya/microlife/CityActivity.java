@@ -47,6 +47,8 @@ public class CityActivity extends BaseActivity implements CityView, LocationView
     private CityPresenter mCityPresenter;
     private LocationPresenter mLocationPresenter;
     private FastScrollerLinearLayout mFastScroller;
+    private CityAdapter mCityAdapter;
+
 
     public static void actionCity(Activity activity)
     {
@@ -102,7 +104,7 @@ public class CityActivity extends BaseActivity implements CityView, LocationView
     }
 
     @Override
-    public void hidProgressDialog()
+    public void hideProgressDialog()
     {
         hideProgressDialogHint();
     }
@@ -117,7 +119,7 @@ public class CityActivity extends BaseActivity implements CityView, LocationView
         if (!mCityItems.isEmpty())
         {
             mRecyclerView.removeAllViews();
-            CityAdapter mCityAdapter = new CityAdapter(this, mCityItems);
+              mCityAdapter = new CityAdapter(this, mCityItems);
 
             mRecyclerView.setAdapter(mCityAdapter);
 
@@ -139,8 +141,9 @@ public class CityActivity extends BaseActivity implements CityView, LocationView
                     @Override
                     public void onClick(DialogInterface dialog, int which)
                     {
-                             CityUtils.saveSelectedCity(mActivity, locationCityName);
-                             mRecyclerView.getAdapter().notifyDataSetChanged();
+                           CityItem currentCity =  CityUtils.saveSelectedCity(mActivity, locationCityName);
+                        mCityAdapter.setSelectedCityItem(currentCity);
+                            mCityAdapter.notifyDataSetChanged();
                              dialog.dismiss();
                     }
                 })

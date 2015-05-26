@@ -16,7 +16,7 @@ import com.haikuowuya.microlife.fragment.TodayFragment;
  */
 public class WeatherPagerAdapter extends FragmentPagerAdapter
 {
-    private     BaseFragment[] mFragments = new BaseFragment[]{TodayFragment.newInstance(), ForecastFragment.newInstance(), LifeFragment.newInstance(), HourFragment.newInstance()};
+    private  BaseFragment[] mFragments = new BaseFragment[]{TodayFragment.newInstance(), ForecastFragment.newInstance(), LifeFragment.newInstance(), HourFragment.newInstance()};
     public WeatherPagerAdapter(FragmentManager fm)
     {
         super(fm);

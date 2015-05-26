@@ -10,10 +10,12 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 
 import com.haikuowuya.microlife.base.BaseActivity;
 import com.haikuowuya.microlife.fragment.MainFragment;
 import com.haikuowuya.microlife.fragment.MenuFragment;
+import com.haikuowuya.microlife.util.DensityUtils;
 import com.haikuowuya.microlife.view.common.DrawerArrowDrawable;
 
 public class MainActivity extends BaseActivity
@@ -41,6 +43,7 @@ public class MainActivity extends BaseActivity
         }
         setContentView(R.layout.activity_main); //TODO
         initView();
+
         getSupportFragmentManager().beginTransaction().add(R.id.frame_left_container, MenuFragment.newInstance()).commit();
         getSupportFragmentManager().beginTransaction().add(R.id.frame_center_container, MainFragment.newInstance()).commit();
         installDrawerLayout();
@@ -51,6 +54,7 @@ public class MainActivity extends BaseActivity
     private void initView()
     {
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer);
+
     }
 
     private void setListener()
@@ -150,6 +154,10 @@ public class MainActivity extends BaseActivity
             title = getCurrentCity().getsName();
         }
         return   title;
+    }
+    public boolean isDrawerOpen()
+    {
+        return  mDrawerLayout.isDrawerOpen(Gravity.START);
     }
 
     private class OnClickListenerImpl implements View.OnClickListener

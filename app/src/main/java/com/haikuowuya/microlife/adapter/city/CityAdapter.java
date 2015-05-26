@@ -43,6 +43,10 @@ public class CityAdapter extends RecyclerView.Adapter<CityAdapter.ViewHolder>
         mCityAdapterDataObserVer = new CityAdapterDataObserver(mData, this);
         registerAdapterDataObserver(mCityAdapterDataObserVer);
     }
+    public void setSelectedCityItem(CityItem cityItem)
+    {
+        mSelectedCityItem = cityItem;
+    }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i)
@@ -86,7 +90,6 @@ public class CityAdapter extends RecyclerView.Adapter<CityAdapter.ViewHolder>
             });
         }
         viewHolder.frameLocationContainer.setVisibility(View.GONE);
-
         viewHolder.textView.setOnClickListener(new OnClickListenerImpl());
     }
 

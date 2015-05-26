@@ -56,7 +56,7 @@ public class WeatherActivity extends BaseActivity implements WeatherView
     private void initWeather()
     {
         mWeather = WeatherUtils.parseWeatherJson(mPreferences.getString(Constants.PREF_WEATHER_JSON, ""));
-        if (null != mWeather && !isWeatherExpired())
+        if (null != mWeather && !WeatherUtils.isWeatherExpired(mPreferences.getLong(Constants.PREF_WEATHER_UPDATE_TIME, 0)))
         {
             onWeatherFinished(mWeather);
         }
@@ -108,6 +108,7 @@ public class WeatherActivity extends BaseActivity implements WeatherView
                 if (null != weather)
                 {
                     mPreferences.edit().putString(Constants.PREF_WEATHER_JSON, json).commit();
+                    mPreferences.edit().putLong(Constants.PREF_WEATHER_UPDATE_TIME, System.currentTimeMillis()).commit();
                     onWeatherFinished(weather);
                 }
             }
@@ -141,7 +142,6 @@ public class WeatherActivity extends BaseActivity implements WeatherView
     public void onWeatherFinished(final Weather weather)
     {
         mWeather = weather;
-        mPreferences.edit().putLong(Constants.PREF_WEATHER_UPDATE_TIME, 0).commit();
         runOnUiThread(new Runnable()
         {
             public void run()
@@ -159,18 +159,5 @@ public class WeatherActivity extends BaseActivity implements WeatherView
         return mWeather;
     }
 
-    /**
-     * 天气是否已经过期
-     * @return true 过期  ; false 没有过期
-     */
-    private boolean isWeatherExpired()
-    {
-        boolean flag = true;
-        long currentTime = System.currentTimeMillis();
-        long lastUpdateTime = mPreferences.getLong(Constants.PREF_WEATHER_UPDATE_TIME, 0);
 
-        flag =  Math.abs(currentTime - lastUpdateTime) >8*60*1000;  // 8分钟一更新
-
-        return flag;
-    }
 }

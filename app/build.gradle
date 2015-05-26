@@ -11,6 +11,11 @@ android {
         versionCode 1
         versionName "1.0"
     }
+    packagingOptions {
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/REFACTORINGS.XML'
+    }
     buildTypes {
         release {
             minifyEnabled false
@@ -28,8 +33,8 @@ dependencies {
     compile 'com.google.code.gson:gson:2.3.1'
     compile 'com.github.d-max:spots-dialog:0.3'
     compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.3'
-    compile 'com.squareup.okhttp:okhttp:2.4.0-RC1'
     compile 'in.srain.cube:ultra-ptr:1.0.9'
     compile 'com.android.support:cardview-v7:22.1.1'
-    compile project(':library')
+    compile project(':evoke')
+    compile files('libs/zxing_3.1.jar')
 }

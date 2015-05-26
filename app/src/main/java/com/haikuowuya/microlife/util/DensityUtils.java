@@ -30,4 +30,8 @@ public class DensityUtils
 	{
 		return (int) (pixels / context.getResources().getDisplayMetrics().scaledDensity);
 	}
+	public static int getScreenWidthInPx(Context context)
+	{
+		return  context.getResources().getDisplayMetrics().widthPixels;
+	}
 }

@@ -44,6 +44,20 @@ public class WeatherUtils
     private static final String TAG_TEMPERATURE = "temperature";
     private static final String TAG_HOURLY_FORECAST = "hourly_forecast";
     private static final String TAG_REAL_TIME = "realtime";
+    private static final String TAG_PM25 ="pm25" ;
+    private static final String TAG_SO2="so2";
+    private static final String TAG_O3="o3";
+    private static final String TAG_CO="co";
+    private static final String TAG_LEVEL="level";
+    private static final String TAG_COLOR="color";
+    private static final String TAG_NO2="no2";
+    private static final String TAG_AQI="aqi";
+    private static final String TAG_QUALITY="quality";
+    private static final String TAG_PM10="pm10";
+
+    private static final String TAG_ADVICE="advice";
+    private static final String TAG_CHIEF="chief";
+    private static final String TAG_UPDATE_TIME="upDateTime";
 
     public static String getWeatherUrl(String weatherId )
     {
@@ -60,7 +74,6 @@ public class WeatherUtils
             item = new Weather();
             try
             {
-
                 String province = null;
                 String city = null;
                 String county = null;
@@ -243,6 +256,52 @@ public class WeatherUtils
                     }
                     item.hourItems = hourItems;
                 }
+                //解析PM信息
+                JSONObject pmJsonObject = jsonObject.optJSONObject(TAG_PM25);
+                if(null != pmJsonObject)
+                {
+                    Weather.Pm25 pm25Item = new Weather.Pm25();
+                      int so2;
+                      int o3;
+                      String co;
+                      int level;
+                      String color;
+                      int no2;
+                      int aqi;
+                      String quality;
+                      int pm10;
+                      int pm25;
+                      String advice;
+                      String chief;
+                      String upDateTime;
+                    so2 = pmJsonObject.optInt(TAG_SO2);
+                    o3 = pmJsonObject.optInt(TAG_O3);
+                    co = pmJsonObject.optString(TAG_CO);
+                    level = pmJsonObject.optInt(TAG_LEVEL);
+                    color = pmJsonObject.optString(TAG_COLOR);
+                    no2 = pmJsonObject.optInt(TAG_NO2);
+                    aqi = pmJsonObject.optInt(TAG_AQI);
+                    quality = pmJsonObject.optString(TAG_QUALITY);
+                    pm10 = pmJsonObject.optInt(TAG_PM10);
+                    pm25 = pmJsonObject.optInt(TAG_PM25);
+                    advice = pmJsonObject.optString(TAG_ADVICE);
+                    chief = pmJsonObject.optString(TAG_CHIEF);
+                    upDateTime = pmJsonObject.optString(TAG_UPDATE_TIME);
+                    pm25Item.so2 = so2;
+                    pm25Item.o3 = o3;
+                    pm25Item.level = level;
+                    pm25Item.co = co;
+                    pm25Item.color = color;
+                    pm25Item.no2 = no2;
+                    pm25Item.aqi = aqi;
+                    pm25Item.quality = quality;
+                    pm25Item.pm10 = pm10;
+                    pm25Item.pm25 = pm25;
+                    pm25Item.advice = advice;
+                    pm25Item.chief = chief;
+                    pm25Item.upDateTime = upDateTime;
+                   item.pm25 = pm25Item;
+                }
                 // 解析每一个小时信息
                 // 解析实时信息
                 JSONObject realtimeJsonObject = jsonObject
@@ -299,5 +358,17 @@ public class WeatherUtils
             }
         }
         return item;
+    }
+
+    /**
+     * 天气是否已经过期
+     * @return true 过期  ; false 没有过期
+     */
+    public static  boolean isWeatherExpired(long lastUpdateTime)
+    {
+        boolean flag = true;
+        long currentTime = System.currentTimeMillis();
+        flag =  Math.abs(currentTime - lastUpdateTime) >8*60*1000;  // 8分钟一更新
+        return flag;
     }
 }

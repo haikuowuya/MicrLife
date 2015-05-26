@@ -1,6 +1,0 @@
-int drawable dl__ic_action_cancel 0x7f020000
-int plurals dl__duration_hours 0x7f030000
-int plurals dl__duration_minutes 0x7f030001
-int plurals dl__duration_seconds 0x7f030002
-int plurals dl__notif_summary_active 0x7f030003
-int plurals dl__notif_summary_waiting 0x7f030004

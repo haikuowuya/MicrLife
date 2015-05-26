@@ -39,8 +39,15 @@
         android:layout_height="1dp"
         android:max="100"
         android:visibility="invisible"
-
         android:layout_below="@+id/tv_download_status"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+         style="@style/Default.TextView.TextColor.style"
+        android:id="@+id/tv_progress"
+        android:layout_height="wrap_content"/>
 
 
 </RelativeLayout>
