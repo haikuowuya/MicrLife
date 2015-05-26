@@ -371,4 +371,8 @@ public class WeatherUtils
         flag =  Math.abs(currentTime - lastUpdateTime) >8*60*1000;  // 8分钟一更新
         return flag;
     }
+    public static boolean isCurrentCityWeather(String cacheWeatherId, String currentCityWeatherId)
+    {
+        return  cacheWeatherId.equals(currentCityWeatherId);
+    }
 }

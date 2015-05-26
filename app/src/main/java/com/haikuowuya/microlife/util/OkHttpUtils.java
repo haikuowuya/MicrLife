@@ -16,7 +16,8 @@ public class OkHttpUtils
     private static final OkHttpClient sOkHttpClient = new OkHttpClient();
     static
     {
-        sOkHttpClient.setConnectTimeout(30, TimeUnit.SECONDS);
+        sOkHttpClient.setConnectTimeout(10, TimeUnit.SECONDS);
+        sOkHttpClient.setReadTimeout(10, TimeUnit.SECONDS);
     }
 
     /***

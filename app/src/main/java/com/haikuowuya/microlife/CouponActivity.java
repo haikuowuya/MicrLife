@@ -15,19 +15,28 @@ import com.eowise.recyclerview.stickyheaders.StickyHeadersBuilder;
 import com.eowise.recyclerview.stickyheaders.StickyHeadersItemDecoration;
 import com.haikuowuya.microlife.adapter.city.CityAdapter;
 import com.haikuowuya.microlife.adapter.city.InitialHeaderAdapter;
+import com.haikuowuya.microlife.adapter.coupon.CouponBrandAdapter;
 import com.haikuowuya.microlife.base.BaseActivity;
 import com.haikuowuya.microlife.mvp.model.CityItem;
+import com.haikuowuya.microlife.mvp.model.CouponBrand;
 import com.haikuowuya.microlife.mvp.presenter.CityPresenter;
+import com.haikuowuya.microlife.mvp.presenter.CouponPresenter;
 import com.haikuowuya.microlife.mvp.presenter.LocationPresenter;
 import com.haikuowuya.microlife.mvp.presenter.impl.CityPresenterImpl;
+import com.haikuowuya.microlife.mvp.presenter.impl.CouponPresenterImpl;
 import com.haikuowuya.microlife.mvp.presenter.impl.LocationPresenterImpl;
 import com.haikuowuya.microlife.mvp.view.CityView;
 import com.haikuowuya.microlife.mvp.view.CouponBrandView;
 import com.haikuowuya.microlife.mvp.view.LocationView;
 import com.haikuowuya.microlife.util.CityUtils;
+import com.haikuowuya.microlife.util.CouponUtils;
 import com.haikuowuya.microlife.util.ToastUtils;
 import com.haikuowuya.microlife.view.FastScrollerLinearLayout;
 import com.haikuowuya.microlife.view.common.ScrollingLinearLayoutManager;
+import com.squareup.okhttp.Request;
+import com.squareup.okhttp.Response;
+
+import java.io.IOException;
 
 import io.realm.Realm;
 import io.realm.RealmResults;
@@ -40,12 +49,8 @@ public class CouponActivity extends BaseActivity  implements CouponBrandView
     private static final int DURATION = 1000;
     private static final String TITLE = "城市选择";
     private RecyclerView mRecyclerView;
-
-    private CityPresenter mCityPresenter;
-    private LocationPresenter mLocationPresenter;
-    private FastScrollerLinearLayout mFastScroller;
-    private CityAdapter mCityAdapter;
-
+    private CouponPresenter mCouponPresenter;
+    
 
     public static void actionCoupon(Activity activity)
     {
@@ -53,19 +58,30 @@ public class CouponActivity extends BaseActivity  implements CouponBrandView
         activity.startActivity(intent);
     }
 
+    private CouponBrand mCouponBrand;
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_coupon);   //TODO
         initView();
-        setMenuResId(R.drawable.location_selector);
+        setMenuResId(R.mipmap.ic_refresh);
         setListener();
+        if(mPreferences.contains(Constants.PREF_COUPON_BRAND))
+        {
+            mCouponBrand = CouponUtils.parseCouponBrandJson(mPreferences.getString(Constants.PREF_COUPON_BRAND, null));
+        }
+        if(null != mCouponBrand)
+        {
+            onCouponBrandFinish(mCouponBrand);
+        }
+        else
+        {
+         mCouponPresenter = new CouponPresenterImpl(this);
+         mCouponPresenter.doGetCouponBrand();
+        }
     }
-
-
-
-
+    
     private void setListener()
     {
         onMenuClickListener(new OnMenuClickListener());
@@ -77,8 +93,6 @@ public class CouponActivity extends BaseActivity  implements CouponBrandView
 //        mRecyclerView.setLayoutManager(new LinearLayoutManager(mActivity, LinearLayoutManager.VERTICAL, false));
         mRecyclerView.setLayoutManager(new ScrollingLinearLayoutManager(mActivity, LinearLayoutManager.VERTICAL, false, DURATION));
 
-        mFastScroller = (FastScrollerLinearLayout) findViewById(R.id.fast_scroller);
-        mFastScroller.setRecyclerView(mRecyclerView);
     }
 
     @Override
@@ -93,25 +107,25 @@ public class CouponActivity extends BaseActivity  implements CouponBrandView
         hideProgressDialogHint();
     }
 
-
-
-
     @Override
-    protected void onPause()
+    public void onResponse(Response response) throws IOException
     {
-        super.onPause();
-
+        hideProgressDialog();
+        String json = response.body().string();
+         mCouponBrand  = CouponUtils.parseCouponBrandJson(json);
+        if(null != mCouponBrand)
+        {
+            mPreferences.edit().putString(Constants.PREF_COUPON_BRAND, json).commit();
+            onCouponBrandFinish(mCouponBrand);
+            ToastUtils.showCrouton(mActivity, mCouponBrand.toString(), getContentViewGroup());
+        }
     }
 
-
     @Override
-    protected void onStop()
+    public void onFailure(Request request, IOException e)
     {
-        super.onStop();
-        if (null != mLocationPresenter)   //判断用户是否点击了定位按钮
-        {
-            mLocationPresenter.stopLocation();
-        }
+        hideProgressDialog();
+        super.onFailure(request, e);
     }
 
     @Override
@@ -120,21 +134,30 @@ public class CouponActivity extends BaseActivity  implements CouponBrandView
         return TITLE;
     }
 
+    @Override
+    public void onCouponBrandFinish(final CouponBrand couponBrand)
+    {
+         runOnUiThread(new Runnable()
+         {
+             @Override
+             public void run()
+             {
+                 mRecyclerView.setAdapter(new CouponBrandAdapter(couponBrand.toList()));
+             }
+         });
+        
+    }
+
     private class OnMenuClickListener implements View.OnClickListener
     {
         @Override
         public void onClick(View v)
         {
-
+            mCouponPresenter = new CouponPresenterImpl(CouponActivity.this);
+            mCouponPresenter.doGetCouponBrand();
         }
     }
 
-    private class OnHeaderClickListenerImpl implements OnHeaderClickListener
-    {
-        public void onHeaderClick(View view, long l)
-        {
-            //  Toast.makeText(mActivity, "hello", Toast.LENGTH_SHORT).show();
-        }
-    }
+   
 
 }

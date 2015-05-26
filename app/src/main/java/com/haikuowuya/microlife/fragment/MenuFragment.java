@@ -49,7 +49,7 @@ public class MenuFragment extends BaseFragment implements WeatherView, Callback
         MenuFragment fragment = new MenuFragment();
         return fragment;
     }
-
+    private Weather mWeather;
     private TextView mTvUpdateTime;
     private TextView mTvWeather;
     private TextView mTvTemperature;
@@ -89,28 +89,33 @@ public class MenuFragment extends BaseFragment implements WeatherView, Callback
         initWeatherData();
         setListener();
     }
+    public  void initWeatherData()
+    {
+        Weather weather = WeatherUtils.parseWeatherJson(mActivity.getPreferences().getString(Constants.PREF_WEATHER_JSON, ""));
+        if (null != weather && !WeatherUtils.isWeatherExpired(mActivity.getPreferences().getLong(Constants.PREF_WEATHER_UPDATE_TIME, 0))
+                && WeatherUtils.isCurrentCityWeather(weather.cityCode, mActivity.getCurrentCity().getWeatherId())
+                )
+        {
+            onWeatherFinished(weather);
+        } else
+        {
+            if (null != mActivity.getCurrentCity())
+            {
+                new WeatherPresenterImpl(this, mActivity.getCurrentCity().getWeatherId()).doGetWeather();
+            }
+        }
+    }
 
     @Override
     public void onResume()
     {
         super.onResume();
-        MainActivity mainActivity = (MainActivity) mActivity;
-        if (mainActivity.isDrawerOpen())
+        if(null != mWeather &&null != mActivity.getCurrentCity() )
         {
-            initWeatherData();
-        }
-    }
-
-    private void initWeatherData()
-    {
-        Weather weather = WeatherUtils.parseWeatherJson(mActivity.getPreferences().getString(Constants.PREF_WEATHER_JSON, ""));
-        if (null != weather && !WeatherUtils.isWeatherExpired(mActivity.getPreferences().getLong(Constants.PREF_WEATHER_UPDATE_TIME, 0)))
-        {
-            onWeatherFinished(weather);
-        }
-        else
-        {
-            new WeatherPresenterImpl(this, mActivity.getCurrentCity().getWeatherId()).doGetWeather();
+            if(!WeatherUtils.isCurrentCityWeather(mWeather.cityCode, mActivity.getCurrentCity().getWeatherId()))
+            {
+                new WeatherPresenterImpl(this, mActivity.getCurrentCity().getWeatherId()).doGetWeather();
+            }
         }
     }
 
@@ -147,6 +152,7 @@ public class MenuFragment extends BaseFragment implements WeatherView, Callback
     @Override
     public void onWeatherFinished(final Weather weather)
     {
+        mWeather = weather;
         mActivity.runOnUiThread(new Runnable()
         {
             public void run()
@@ -167,8 +173,7 @@ public class MenuFragment extends BaseFragment implements WeatherView, Callback
                 if (realtimeItem.info.contains(Weather.DUYUN))
                 {
                     mRelativeWeatherContainer.setBackgroundResource(R.mipmap.ic_weather_background_cloudy);
-                }
-                else if (realtimeItem.info.contains(Weather.YU))
+                } else if (realtimeItem.info.contains(Weather.YU))
                 {
                     mRelativeWeatherContainer.setBackgroundResource(R.mipmap.ic_weather_background_rain);
                 }

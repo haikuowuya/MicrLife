@@ -15,4 +15,5 @@ public class Constants
     public static final String PREF_LOCATION_CITY="location_city";
     public static final String PREF_SELECTED_CITY="selected_city";
     public static final String PREF_WEATHER_UPDATE_TIME = "weather_update_time";
+    public static final String PREF_COUPON_BRAND="coupon_brand";
 }

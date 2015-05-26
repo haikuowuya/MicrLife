@@ -21,6 +21,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.util.Patterns;
 import android.util.TypedValue;
+import android.view.KeyEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
@@ -231,48 +232,48 @@ public class QRActivity extends BaseActivity
         if (Patterns.WEB_URL.matcher(resultText).matches())
         {
             buttonText = "打开链接";
-            searchOrLoad(resultText);
+//            searchOrLoad(resultText);
         }
         else
         {
             buttonText = "去搜索";
             mTvResult.setText("扫描详情:"+resultText );
         }
-//		AlertDialog.Builder builder = new AlertDialog.Builder(this);
-//		builder.setTitle("扫描结果");
-//		builder.setMessage(message);
-//		builder.setPositiveButton("重新扫描", new DialogInterface.OnClickListener()
-//		{
-//			public void onClick(DialogInterface dialog, int which)
-//			{
-//				restartPreviewAfterDelay(200L);
-//			}
-//		});
-//		builder.setNegativeButton(buttonText,
-//			new DialogInterface.OnClickListener()
-//			{
-//				public void onClick(DialogInterface dialog, int which)
-//				{
-//					searchOrLoad(resultText);
-//				}
-//			});
-//		builder.setCancelable(false);
-//		mAlertDialog = builder.create();
-//		mAlertDialog.setOnKeyListener(new DialogInterface.OnKeyListener()
-//		{
-//			public boolean onKey(DialogInterface dialog, int keyCode,
-//				KeyEvent event)
-//			{
-//				if (keyCode == KeyEvent.KEYCODE_BACK)
-//				{
-//					dialog.dismiss();
-//					restartPreviewAfterDelay(200L);
-//					return true;
-//				}
-//				return false;
-//			}
-//		});
-//		mAlertDialog.show();
+		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+		builder.setTitle("扫描结果");
+		builder.setMessage(message);
+		builder.setPositiveButton("重新扫描", new DialogInterface.OnClickListener()
+		{
+			public void onClick(DialogInterface dialog, int which)
+			{
+				restartPreviewAfterDelay(200L);
+			}
+		});
+		builder.setNegativeButton(buttonText,
+			new DialogInterface.OnClickListener()
+			{
+				public void onClick(DialogInterface dialog, int which)
+				{
+					searchOrLoad(resultText);
+				}
+			});
+		builder.setCancelable(false);
+		mAlertDialog = builder.create();
+		mAlertDialog.setOnKeyListener(new DialogInterface.OnKeyListener()
+		{
+			public boolean onKey(DialogInterface dialog, int keyCode,
+				KeyEvent event)
+			{
+				if (keyCode == KeyEvent.KEYCODE_BACK)
+				{
+					dialog.dismiss();
+					restartPreviewAfterDelay(200L);
+					return true;
+				}
+				return false;
+			}
+		});
+		mAlertDialog.show();
     }
 
     /***

@@ -21,6 +21,7 @@ import com.haikuowuya.microlife.view.common.DrawerArrowDrawable;
 public class MainActivity extends BaseActivity
 {
     private static  final String DEFAULT_CITY_TITLE="苏州";
+    private MenuFragment mMenuFragment;
     public static void actionMain(Activity activity)
     {
         Intent intent = new Intent(activity, MainActivity.class);
@@ -43,8 +44,8 @@ public class MainActivity extends BaseActivity
         }
         setContentView(R.layout.activity_main); //TODO
         initView();
-
-        getSupportFragmentManager().beginTransaction().add(R.id.frame_left_container, MenuFragment.newInstance()).commit();
+        mMenuFragment = MenuFragment.newInstance();
+        getSupportFragmentManager().beginTransaction().add(R.id.frame_left_container,  mMenuFragment).commit();
         getSupportFragmentManager().beginTransaction().add(R.id.frame_center_container, MainFragment.newInstance()).commit();
         installDrawerLayout();
         setListener();
@@ -87,6 +88,7 @@ public class MainActivity extends BaseActivity
             {
                 super.onDrawerOpened(drawerView);
                 mArrowDrawable.setProgress(1.f);
+                mMenuFragment.initWeatherData();
             }
 
             @Override
