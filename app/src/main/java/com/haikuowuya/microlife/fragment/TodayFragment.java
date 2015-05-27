@@ -36,6 +36,7 @@ public class TodayFragment extends BaseFragment
 	private TextView mTvWeather;
 	private TextView mTvTemperature;
 	private TextView mTvPm;
+	private TextView mTvDu;
 	private View mHeaderView;
 	private ListView mListView;
 
@@ -56,6 +57,7 @@ public class TodayFragment extends BaseFragment
 		mTvWeather = (TextView) mHeaderView.findViewById(R.id.tv_weather);
 		mTvUpdateTime = (TextView) mHeaderView.findViewById(R.id.tv_update_time);
 		mTvPm = (TextView) mHeaderView.findViewById(R.id.tv_pm);
+		mTvDu = (TextView) mHeaderView.findViewById(R.id.tv_du);
 		mTvPmInfo = (TextView) mHeaderView.findViewById(R.id.tv_pm_info);
 
 	}
@@ -73,6 +75,7 @@ public class TodayFragment extends BaseFragment
 			Weather.Pm25 pmItem = mWeatherActivity.getWeather().pm25;
 			 mTvWeather.setText(realtimeItem.info);
 			 mTvTemperature.setText(realtimeItem.feelslike_c);
+			mTvDu.setVisibility(View.VISIBLE);
 			 mTvUpdateTime.setText("更新时间:"+ DateUtils.getUpdateTime(realtimeItem.dataUptime));
 			if(null != pmItem)
 			{

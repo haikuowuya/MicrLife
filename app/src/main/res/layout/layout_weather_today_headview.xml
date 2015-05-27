@@ -3,15 +3,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:paddingRight="10dp"
-                android:paddingLeft="10dp">
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp">
+
     <TextView
-        android:layout_marginTop="8dp"
         android:id="@+id/tv_update_time"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:text="更新时间"
-        android:textColor="#FFFFFFFF"/>
+        android:layout_marginTop="8dp"
+        android:textColor="#FFFFFFFF"
+        tools:text="更新时间"/>
 
 
     <TextView
@@ -19,9 +20,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tv_update_time"
-        tools:text="8"
         android:textColor="#FFFFFFFF"
-        android:textSize="72sp"/>
+        android:textSize="72sp"
+        tools:text="8"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -36,10 +37,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            tools:text="°C"
             android:text="°C"
             android:textColor="#FFFFFFFF"
-            android:textSize="20sp"/>
+            android:textSize="20sp"
+            android:visibility="invisible"
+            tools:text="°C"/>
 
         <TextView
             android:id="@+id/tv_weather"
@@ -48,8 +50,8 @@
             android:layout_weight="1"
             android:gravity="center_vertical"
             android:paddingLeft="4dp"
-            tools:text="晴转多云"
-            android:textColor="#FFFFFFFF"/>
+            android:textColor="#FFFFFFFF"
+            tools:text="晴转多云"/>
     </LinearLayout>
 
     <ImageView
@@ -81,10 +83,11 @@
         android:layout_below="@+id/iv_weather_refresh"
         android:layout_marginLeft="8dp"
         android:padding="4dp"
-        tools:text="PM值"
         android:textColor="#FFFFFFFF"
         android:textSize="16sp"
+        tools:text="PM值"
         />
+
     <TextView
         android:id="@+id/tv_pm_info"
         android:layout_width="wrap_content"
@@ -92,12 +95,12 @@
         android:layout_alignParentRight="true"
         android:layout_below="@+id/tv_pm"
         android:layout_marginLeft="8dp"
+        android:gravity="center"
+        android:maxLength="8"
+        android:minWidth="48dp"
         android:padding="4dp"
         android:singleLine="true"
-        android:maxLength="8"
-        tools:text="轻度污染"
-        android:minWidth="48dp"
-        android:gravity="center"
         android:textColor="#FFFFFFFF"
-        android:textSize="16sp"/>
+        android:textSize="16sp"
+        tools:text="轻度污染"/>
 </RelativeLayout>

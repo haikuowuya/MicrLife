@@ -1,36 +1,31 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    
     android:layout_height="65dp"
-    android:orientation="vertical"
-    >
+    android:background="@drawable/list_item_selector"
+    android:descendantFocusability="blocksDescendants"
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="64dp"
-        android:divider="#FFFF0000"
-        android:background="@drawable/list_item_selector"
-        android:dividerPadding="2dp"
-         >
+        android:layout_height="64dp">
+
         <ImageView
             android:id="@+id/iv_image"
             android:layout_width="64dp"
-            android:src="@mipmap/ic_launcher"
-            android:padding="12dp"
-            android:layout_height="64dp" />
+            android:layout_height="64dp"
+            android:padding="8dp"
+            android:scaleType="fitXY"
+            android:src="@mipmap/ic_launcher"/>
+
         <TextView
             android:id="@+id/tv_text"
+            style="@style/Default.TextView.TextColor.style"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-           
-            android:clickable="true"
             android:gravity="center_vertical"
-            android:padding="8dp"
-            android:textColor="@drawable/list_item_text_color_selector"/>
-
-       
+            android:padding="8dp"/>
     </LinearLayout>
 
     <View

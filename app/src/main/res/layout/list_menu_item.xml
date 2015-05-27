@@ -1,22 +1,37 @@
 <LinearLayout
-    android:id="@+id/drawer"
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="64dp">
+    android:background="@drawable/list_item_selector"
+    android:layout_height="57dp"
+    android:orientation="vertical"
+     >
 
-    <ImageView
-        android:id="@+id/iv_image"
-        android:layout_width="64dp"
-        android:layout_height="match_parent"/>
-
-    <TextView
-        android:id="@+id/tv_text"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center_vertical"
-        android:padding="8dp"
-        android:layout_weight="1"/>
+        android:layout_height="56dp"
+       >
 
+        <ImageView
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_gravity="center_vertical"
+            android:padding="12dp"
+            android:src="@mipmap/ic_coupon_launcher"/>
 
+        <TextView
+            style="@style/Default.TextView.TextColor.style"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:text="布丁优惠券"
+            tools:text="KKKK"/>
+
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:alpha="0.6"
+        android:background="@color/color_indigo_nav_color"/>
 </LinearLayout>
 

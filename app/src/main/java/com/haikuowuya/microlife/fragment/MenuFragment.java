@@ -54,11 +54,12 @@ public class MenuFragment extends BaseFragment implements WeatherView, Callback
     private TextView mTvWeather;
     private TextView mTvTemperature;
     private TextView mTvPm;
+    private TextView mTvDu;
     private ProgressBar mPbRefreshProgress;
     private RelativeLayout mRelativeWeatherContainer;
     private ImageView mIvWeatherRefresh;
     private TextView mTvPmInfo;
-    private CardView mCardCoupon;
+    private View mCouponView;
 
     @Nullable
     @Override
@@ -79,7 +80,8 @@ public class MenuFragment extends BaseFragment implements WeatherView, Callback
         mPbRefreshProgress = (ProgressBar) mRelativeWeatherContainer.findViewById(R.id.pb_refresh_progress);
         mIvWeatherRefresh = (ImageView) mRelativeWeatherContainer.findViewById(R.id.iv_weather_refresh);
         mTvPmInfo = (TextView) mRelativeWeatherContainer.findViewById(R.id.tv_pm_info);
-        mCardCoupon = (CardView) view.findViewById(R.id.card_coupon);
+        mCouponView =  view.findViewById(R.id.list_coupon);
+        mTvDu = (TextView) view.findViewById(R.id.tv_du);
     }
 
     @Override
@@ -124,7 +126,7 @@ public class MenuFragment extends BaseFragment implements WeatherView, Callback
         OnClickListenerImpl onClickListenerImpl = new OnClickListenerImpl();
         mRelativeWeatherContainer.setOnClickListener(onClickListenerImpl);
         mIvWeatherRefresh.setOnClickListener(onClickListenerImpl);
-        mCardCoupon.setOnClickListener(onClickListenerImpl);
+        mCouponView.setOnClickListener(onClickListenerImpl);
     }
 
     @Override
@@ -161,6 +163,7 @@ public class MenuFragment extends BaseFragment implements WeatherView, Callback
                 Weather.WeatherItem weatherItem = weather.weatherItems.get(0);
                 Weather.RealtimeItem realtimeItem = weather.realtimeItem;
                 mTvWeather.setText(realtimeItem.info);
+                mTvDu.setVisibility(View.VISIBLE);
                 mTvTemperature.setText(realtimeItem.feelslike_c);
                 mTvUpdateTime.setText("更新时间:" + DateUtils.getUpdateTime(realtimeItem.dataUptime));
                 if (null != weather.pm25)
@@ -208,7 +211,6 @@ public class MenuFragment extends BaseFragment implements WeatherView, Callback
 
     private class OnClickListenerImpl implements View.OnClickListener
     {
-
         @Override
         public void onClick(View v)
         {
@@ -220,10 +222,9 @@ public class MenuFragment extends BaseFragment implements WeatherView, Callback
                 case R.id.iv_weather_refresh:
                     new WeatherPresenterImpl(MenuFragment.this, mActivity.getCurrentCity().getWeatherId()).doGetWeather();
                     break;
-                case R.id.card_coupon:
+                case R.id.list_coupon:
                     CouponActivity.actionCoupon(mActivity);
                     break;
-
             }
         }
     }

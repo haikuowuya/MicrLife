@@ -47,7 +47,7 @@ import io.realm.RealmResults;
 public class CouponActivity extends BaseActivity  implements CouponBrandView
 {
     private static final int DURATION = 1000;
-    private static final String TITLE = "城市选择";
+    private static final String TITLE = "优惠券列表";
     private RecyclerView mRecyclerView;
     private CouponPresenter mCouponPresenter;
     
@@ -117,7 +117,7 @@ public class CouponActivity extends BaseActivity  implements CouponBrandView
         {
             mPreferences.edit().putString(Constants.PREF_COUPON_BRAND, json).commit();
             onCouponBrandFinish(mCouponBrand);
-            ToastUtils.showCrouton(mActivity, mCouponBrand.toString(), getContentViewGroup());
+          //  ToastUtils.showCrouton(mActivity, mCouponBrand.toString(), getContentViewGroup());
         }
     }
 

@@ -16,11 +16,12 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            style="@style/Default.TextView.TextColor.style"
             android:background="@drawable/list_item_selector"
             android:clickable="true"
             android:gravity="center_vertical"
             android:padding="8dp"
-            android:textColor="@drawable/list_item_text_color_selector"/>
+           />
 
         <FrameLayout
             android:id="@+id/frame_location_container"
