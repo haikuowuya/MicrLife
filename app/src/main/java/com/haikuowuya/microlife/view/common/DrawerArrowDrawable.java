@@ -32,12 +32,12 @@ public abstract class DrawerArrowDrawable extends Drawable
         this.mPaint.setAntiAlias(true);
         this.mPaint.setColor(0xFFFFFFFF);
 
-        this.mSize = DensityUtils.dpToPixels(context, 50);
-        this.mBarSize = DensityUtils.dpToPixels(context, 18);
-        this.mTopBottomArrowSize = DensityUtils.dpToPixels(context, 11);
-        this.mBarThickness = DensityUtils.dpToPixels(context, 2);
-        this.mBarGap = DensityUtils.dpToPixels(context, 3);
-        this.mMiddleArrowSize = DensityUtils.dpToPixels(context, 16);
+        this.mSize = DensityUtils.dpToPx(context, 50);
+        this.mBarSize = DensityUtils.dpToPx(context, 18);
+        this.mTopBottomArrowSize = DensityUtils.dpToPx(context, 11);
+        this.mBarThickness = DensityUtils.dpToPx(context, 2);
+        this.mBarGap = DensityUtils.dpToPx(context, 3);
+        this.mMiddleArrowSize = DensityUtils.dpToPx(context, 16);
         this.mPaint.setStyle(Paint.Style.STROKE);
         this.mPaint.setStrokeJoin(Paint.Join.ROUND);
         this.mPaint.setStrokeCap(Paint.Cap.SQUARE);

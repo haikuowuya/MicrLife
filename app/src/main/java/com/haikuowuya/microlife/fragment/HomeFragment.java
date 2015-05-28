@@ -1,7 +1,6 @@
 package com.haikuowuya.microlife.fragment;
 
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -66,7 +65,7 @@ public class HomeFragment extends BaseFragment
         int[] colors =  new int[]{0xFFC93437,0xFF375BF1,0xFFF7D23E,0xFF34A350,0xFFFF0000};
         materialHeader.setColorSchemeColors(colors);
         materialHeader.setLayoutParams(new PtrFrameLayout.LayoutParams(-1, -2));
-        materialHeader.setPadding(0, DensityUtils.dpToPixels(mActivity, 15), 0, DensityUtils.dpToPixels(mActivity, 10));
+        materialHeader.setPadding(0, DensityUtils.dpToPx(mActivity, 15), 0, DensityUtils.dpToPx(mActivity, 10));
         materialHeader.setPtrFrameLayout(mPtrContainer);
         mPtrContainer.setHeaderView(materialHeader);
         mPtrContainer.addPtrUIHandler(materialHeader);

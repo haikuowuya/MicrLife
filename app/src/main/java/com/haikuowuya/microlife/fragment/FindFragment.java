@@ -13,13 +13,11 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.haikuowuya.microlife.R;
-import com.haikuowuya.microlife.adapter.home.HomePagerAdapter;
 import com.haikuowuya.microlife.base.BaseFragment;
 import com.haikuowuya.microlife.model.HomeItemHolder;
 import com.haikuowuya.microlife.util.DensityUtils;
 import com.haikuowuya.microlife.util.HomeItemUtils;
 import com.haikuowuya.microlife.util.ToastUtils;
-import com.haikuowuya.microlife.view.InfiniteViewPagerIndicatorView;
 
 import in.srain.cube.views.ptr.PtrClassicFrameLayout;
 import in.srain.cube.views.ptr.PtrFrameLayout;
@@ -70,7 +68,7 @@ public class FindFragment extends BaseFragment
         int[] colors =  new int[]{0xFFC93437,0xFF375BF1,0xFFF7D23E,0xFF34A350,0xFFFF0000};
         materialHeader.setColorSchemeColors(colors);
         materialHeader.setLayoutParams(new PtrFrameLayout.LayoutParams(-1, -2));
-        materialHeader.setPadding(0, DensityUtils.dpToPixels(mActivity, 15), 0, DensityUtils.dpToPixels(mActivity, 10));
+        materialHeader.setPadding(0, DensityUtils.dpToPx(mActivity, 15), 0, DensityUtils.dpToPx(mActivity, 10));
         materialHeader.setPtrFrameLayout(mPtrContainer);
         mPtrContainer.setHeaderView(materialHeader);
         mPtrContainer.addPtrUIHandler(materialHeader);

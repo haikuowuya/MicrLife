@@ -12,7 +12,6 @@ import android.view.Display;
 import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
-import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.FrameLayout.LayoutParams;
 
@@ -171,7 +170,7 @@ public class ViewUtils
 	public static int getStatusBarHeight(Context context)
 	{
 		return DensityUtils
-			.dpToPixels(context, getStatusBarHeightInDp(context));
+			.dpToPx(context, getStatusBarHeightInDp(context));
 	}
 
 	public static int getSystemBarHeightInDp(Context context)

@@ -101,10 +101,12 @@ public class MenuFragment extends BaseFragment implements WeatherView, Callback
             onWeatherFinished(weather);
         } else
         {
+            String weatherId = Constants.DEFAULT_CITY_WEATHER_ID;
             if (null != mActivity.getCurrentCity())
             {
-                new WeatherPresenterImpl(this, mActivity.getCurrentCity().getWeatherId()).doGetWeather();
+                weatherId = mActivity.getCurrentCity().getWeatherId();
             }
+                new WeatherPresenterImpl(this,weatherId).doGetWeather();
         }
     }
 

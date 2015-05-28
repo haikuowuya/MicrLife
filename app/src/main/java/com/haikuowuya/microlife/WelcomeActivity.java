@@ -2,6 +2,7 @@ package com.haikuowuya.microlife;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.view.Gravity;
@@ -15,6 +16,7 @@ import com.haikuowuya.microlife.base.BaseActivity;
 import com.haikuowuya.microlife.util.DensityUtils;
 import com.haikuowuya.microlife.view.VerticalViewPager;
 import com.haikuowuya.microlife.view.common.DepthPageTransformer;
+
 
 public class WelcomeActivity extends BaseActivity
 {
@@ -74,12 +76,18 @@ public class WelcomeActivity extends BaseActivity
                     Button button = new Button(mActivity);
                     button.setGravity(Gravity.CENTER);
                     button.setText("进入");
-                    int height = DensityUtils.dpToPixels(mActivity, 40.f);
+                    ColorStateList colors = (ColorStateList)getResources().getColorStateList(R.drawable.default_text_color_selector);
+                        button.setTextColor(colors);
+                    button.setBackground(getResources().getDrawable(R.drawable.list_item_selector));
+                    int height = DensityUtils.dpToPx(mActivity, 40.f);
                     int width = height * 3;
                     FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(width, height);
                     params.gravity = Gravity.CENTER_HORIZONTAL | Gravity.BOTTOM;
-                    params.bottomMargin = DensityUtils.dpToPixels(mActivity, 20.f);
-                    frameLayout.addView(button, params);
+                    params.bottomMargin = DensityUtils.dpToPx(mActivity, 20.f);
+                    FrameLayout childFrameLayout = new FrameLayout(mActivity);
+                    childFrameLayout.setBackgroundColor(getResources().getColor(R.color.color_indigo_colorPrimaryDark));
+                    childFrameLayout.addView(button);
+                    frameLayout.addView(childFrameLayout, params);
                     button.setOnClickListener(new View.OnClickListener()
                     {
                         @Override

@@ -2,7 +2,6 @@ package com.haikuowuya.microlife.view;
 
 import android.content.Context;
 import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.util.AttributeSet;
 import android.view.View;
@@ -82,7 +81,7 @@ public class TabViewPagerIndicator extends LinearLayout
 
     private void init()
     {
-        mMinHeight = DensityUtils.dpToPixels(getContext(), mMinHeight);
+        mMinHeight = DensityUtils.dpToPx(getContext(), mMinHeight);
         mViewPager = new ViewPagerEx(getContext());
         mViewPager.setId(VP_VIEWPAGER);
         mIndicator = new CirclePageIndicator(getContext());
