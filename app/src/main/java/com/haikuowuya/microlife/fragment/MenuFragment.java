@@ -98,6 +98,10 @@ public class MenuFragment extends BaseFragment implements WeatherView, Callback
                 && WeatherUtils.isCurrentCityWeather(weather.cityCode, mActivity.getCurrentCity().getWeatherId())
                 )
         {
+
+
+
+
             onWeatherFinished(weather);
         } else
         {
